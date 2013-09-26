@@ -1,0 +1,29 @@
+application: fx-monitor
+version: 1
+runtime: python27
+threadsafe: true
+api_version: 1
+
+inbound_services:
+- warmup
+
+automatic_scaling:
+  max_idle_instances: 1
+  min_pending_latency: 300ms
+  
+handlers:
+- url: /
+  script: fx-monitor.app
+  
+- url: /?cron=1
+  script: fx-monitor.app
+
+- url: /?c=1
+  script: fx-monitor.app
+  
+- url: /static
+  static_dir: static
+
+libraries:
+- name: webapp2
+  version: latest

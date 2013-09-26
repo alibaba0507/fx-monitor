@@ -1,0 +1,5 @@
+cron:
+- description: load Data into memcache
+  url: /?cron=1
+  schedule: every 25 minutes
+  

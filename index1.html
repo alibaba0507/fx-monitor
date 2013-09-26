@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.png">
+   <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+     <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css" rel="stylesheet">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="http://getbootstrap.com/2.3.2/assets/ico/favicon.png">
+                                   
+                                   
+    <!-- Google Chart Drow -->                               
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load('visualization', '1', {'packages':['corechart']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        {% if chart  %}
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'Price');
+        data.addColumn('number', 'Distribution');
+        
+        {% for price_data in chart %}
+         //var txt = document.getElementById('print').innerHTML;
+         //document.getElementById('print').innerHTML = txt + '<br /> ***** ' + price_data;
+         data.addRow({{price_data}});
+        {% endfor %}
+        var options = {
+          title: 'Price / Time Distribution for {{ pair }}',
+          hAxis: {title: 'Price', titleTextStyle: {color: 'red'}},
+          width: 600, 
+          height:300
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+        {% endif %}
+      }
+    </script>
+    <!-- End Google chart draw -->
+  </head>
+
+  <body>
+   {% autoescape off %}
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/">Forex patterns and signal monitor</a>
+          &nbsp;
+          <a href="{{ url }}">{{ url_text }}</a> &nbsp;{{user.nickname}}
+          
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/?pv=1">Pivot Trends</a></li>
+              <li><a href="/about.html">About</a></li>
+              <li><a href="/contact.html">Contact</a></li>
+              <!--
+              <li><a href="{{ url }}">{{ url_text }}</a> {{user.nickname}}</li>
+              -->
+              <!-- li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/?r=1">S/R Lines</a></li>
+                  <li><a href="/?pv=1">Pv Trends</a></li>
+                  <!-- Examples of other menu items
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                  -- >
+                </ul>
+              </li -->
+            </ul>
+            <!--
+            <form class="navbar-form pull-right">
+              <input class="span2" type="text" placeholder="Email">
+              <input class="span2" type="password" placeholder="Password">
+              <button type="submit" class="btn">Sign in</button>
+            </form>
+            -->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>Hello, world!</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row">
+       <!-- style="overflow:scroll" -->
+        <!-- div class="col-md-3 col-md-offset-1" id="chart_div" ></div -->
+        {% if user %}
+        <div class="tabbable"> <!-- Only required for left/right tabs -->
+         <ul class="nav nav-tabs">
+          <li class="active"><a href="#tab1" data-toggle="tab">GBPUSD</a></li>
+          <li><a href="#tab2" data-toggle="tab">EURUSD</a></li>
+          <li><a href="#tab3" data-toggle="tab">USDCHF</a></li>
+          <li><a href="#tab4" data-toggle="tab">USDCAD</a></li>
+          <li><a href="#tab5" data-toggle="tab">AUDUSD</a></li>
+          <li><a href="#tab6" data-toggle="tab">EURGBP</a></li>
+          <li><a href="#tab7" data-toggle="tab">GBPJPY</a></li>
+          <li><a href="#tab8" data-toggle="tab">EURJPY</a></li>
+          <li><a href="#tab9" data-toggle="tab">USDJPY</a></li>
+         </ul>
+         <div class="tab-content">
+          <div class="tab-pane active" id="tab1">
+           <form  action = '/?p=gbpusd'method="post">
+            <table>
+              <tr>
+                <td>
+                 
+                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if GBPUSD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if GBPUSD.Strong_Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if GBPUSD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if GBPUSD.Strong_Dark_cloud %} checked {% endif %}" >
+            
+                <input type="checkbox" name="Pearcing" value="USDCHF" {% if GBPUSD.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if GBPUSD.Pearcing %} checked {% endif %}">
+              
+                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if GBPUSD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if GBPUSD.Dark_cloud %} checked {% endif %}">
+                </td>
+                <td></td>
+                <td>
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if GBPUSD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if GBPUSD.Bulish_Endulfing %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if GBPUSD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if GBPUSD.Berish_Endulfing %} checked {% endif %}" >
+                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if GBPUSD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if GBPUS.Bulish_Harami %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if GBPUS.Berish_Harami %} checked {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if GBPUSD.Berish_Harami %} checked {% endif %}">
+                
+                  
+                </td>
+                 
+              </tr>
+              <tr>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td>
+               <input type="submit" value="Submit">
+             </td>
+             </tr>
+            </table>
+            </form>
+          </div>
+          <div class="tab-pane" id="tab2">
+          <form  action = '/?p=eurusd'method="post">
+           <table>
+              <tr>
+                <td>
+                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if EURUSD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if EURUSD.Strong_Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if EURUSD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if EURUSD.Strong_Dark_cloud %} checked {% endif %}" >
+                <input type="checkbox" name="Pearcing" value="USDCHF" {% if GBPUSD.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if EURUSD.Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if EURUSD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if EURUSD.Dark_cloud %} checked {% endif %}">
+                </td>
+                <td></td>
+                <td>
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if EURUSD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if EURUSD.Bulish_Endulfing %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if EURUSD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if EURUSD.Berish_Endulfing %} checked {% endif %}" >
+                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if EURUSD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if EURUSD.Bulish_Harami %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if EURUSD.Berish_Harami %} checked {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if EURUSD.Berish_Harami %} checked {% endif %}">
+               </td>
+              </tr>
+              <tr>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td>
+               <input type="submit" value="Submit">
+             </td>
+             </tr>
+            </table>
+            </form>
+          </div>
+          <div class="tab-pane" id="tab3">
+          <form  action = '/?p=usdchf'method="post">
+            <table>
+              <tr>
+                <td>
+                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if USDCHF.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if USDCHF.Strong_Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if USDCHF.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if USDCHF.Strong_Dark_cloud %} checked {% endif %}" >
+                <input type="checkbox" name="Pearcing" value="USDCHF" {% if USDCHF.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if USDCHF.Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if USDCHF.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if USDCHF.Dark_cloud %} checked {% endif %}">
+                </td>
+                <td></td>
+                <td>
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if USDCHF.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if USDCHF.Bulish_Endulfing %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if USDCHF.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if USDCHF.Berish_Endulfing %} checked {% endif %}" >
+                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if USDCHF.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if USDCHF.Bulish_Harami %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if USDCHF.Berish_Harami %} checked {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if USDCHF.Berish_Harami %} checked {% endif %}">
+                </td>
+              </tr>
+              <tr>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td>
+               <input type="submit" value="Submit">
+             </td>
+             </tr>
+            </table>
+            </form>
+          </div>
+          <div class="tab-pane" id="tab4">
+          <form  action = '/?p=usdcad'method="post">
+            <table>
+              <tr>
+                <td>
+               <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if USDCAD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if USDCAD.Strong_Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if USDCAD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if USDCAD.Strong_Dark_cloud %} checked {% endif %}" >
+                <input type="checkbox" name="Pearcing" value="USDCHF" {% if USDCAD.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if USDCAD.Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if USDCAD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if USDCAD.Dark_cloud %} checked {% endif %}">
+                </td>
+                <td></td>
+                <td>
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if USDCAD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if USDCAD.Bulish_Endulfing %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if USDCAD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if USDCAD.Berish_Endulfing %} checked {% endif %}" >
+                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if USDCAD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if USDCAD.Bulish_Harami %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if USDCAD.Berish_Harami %} checked {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if USDCAD.Berish_Harami %} checked {% endif %}">
+                 </td>
+              </tr>
+              <tr>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td>
+               <input type="submit" value="Submit">
+             </td>
+             </tr>
+            </table>
+            </form>
+          </div>
+          <div class="tab-pane" id="tab5">
+          <form  action = '/?p=audusd'method="post">
+           <table>
+              <tr>
+                <td>
+                 <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if AUDUSD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if AUDUSD.Strong_Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if AUDUSD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if AUDUSD.Strong_Dark_cloud %} checked {% endif %}" >
+                <input type="checkbox" name="Pearcing" value="USDCHF" {% if AUDUSD.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if AUDUSD.Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if AUDUSD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if AUDUSD.Dark_cloud %} checked {% endif %}">
+                </td>
+                <td></td>
+                <td>
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if AUDUSD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if AUDUSD.Bulish_Endulfing %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if AUDUSD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if AUDUSD.Berish_Endulfing %} checked {% endif %}" >
+                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if AUDUSD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if AUDUSD.Bulish_Harami %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if AUDUSD.Berish_Harami %} checked {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if AUDUSD.Berish_Harami %} checked {% endif %}">
+                </td>
+              </tr>
+              <tr>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td>
+               <input type="submit" value="Submit">
+             </td>
+             </tr>
+            </table>
+            </form>
+          </div>
+          <div class="tab-pane" id="tab6">
+          <form  action = '/?p=eurgbp'method="post">
+            <table>
+              <tr>
+                <td>
+                 <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if EURGBP.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if EURGBP.Strong_Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if EURGBP.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if EURGBP.Strong_Dark_cloud %} checked {% endif %}" >
+                <input type="checkbox" name="Pearcing" value="USDCHF" {% if EURGBP.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if EURGBP.Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if EURGBP.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if EURGBP.Dark_cloud %} checked {% endif %}">
+                </td>
+                <td></td>
+                <td>
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if EURGBP.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if EURGBP.Bulish_Endulfing %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if EURGBP.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if EURGBP.Berish_Endulfing %} checked {% endif %}" >
+                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if EURGBP.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if EURGBP.Bulish_Harami %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if EURGBP.Berish_Harami %} checked {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if EURGBP.Berish_Harami %} checked {% endif %}">
+                </td>
+              </tr>
+              <tr>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td>
+               <input type="submit" value="Submit">
+             </td>
+             </tr>
+            </table>
+            </form>
+          </div>
+          <div class="tab-pane" id="tab7">
+          <form  action = '/?p=gbpjpy'method="post">
+            <table>
+              <tr>
+                <td>
+                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if GBPJPY.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if GBPJPY.Strong_Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if GBPJPY.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if GBPJPY.Strong_Dark_cloud %} checked {% endif %}" >
+                <input type="checkbox" name="Pearcing" value="USDCHF" {% if GBPJPY.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if GBPJPY.Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if GBPJPY.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if GBPJPY.Dark_cloud %} checked {% endif %}">
+                </td>
+                <td></td>
+                <td>
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if GBPJPY.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if GBPJPY.Bulish_Endulfing %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if GBPJPY.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if GBPJPY.Berish_Endulfing %} checked {% endif %}" >
+                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if GBPJPY.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if GBPJPY.Bulish_Harami %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if GBPJPY.Berish_Harami %} checked {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if GBPJPY.Berish_Harami %} checked {% endif %}">
+                </td>
+              </tr>
+              <tr>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td>
+               <input type="submit" value="Submit">
+             </td>
+             </tr>
+            </table>
+            </form>
+          </div>
+          <div class="tab-pane" id="tab8">
+          <form  action = '/?p=eurjpy'method="post">
+            <table>
+              <tr>
+                <td>
+                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if EURJPY.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if EURJPY.Strong_Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if EURJPY.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if EURJPY.Strong_Dark_cloud %} checked {% endif %}" >
+                <input type="checkbox" name="Pearcing" value="USDCHF" {% if EURJPY.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if EURJPY.Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if EURJPY.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if EURJPY.Dark_cloud %} checked {% endif %}">
+                </td>
+                <td></td>
+                <td>
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if EURJPY.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if EURJPY.Bulish_Endulfing %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if EURJPY.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if EURJPY.Berish_Endulfing %} checked {% endif %}" >
+                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if EURJPY.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if EURJPY.Bulish_Harami %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if EURJPY.Berish_Harami %} checked {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if EURJPY.Berish_Harami %} checked {% endif %}">
+                </td>
+              </tr>
+              <tr>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td>
+               <input type="submit" value="Submit">
+             </td>
+             </tr>
+            </table>
+            </form>
+          </div>
+          <div class="tab-pane" id="tab9">
+          <form  action = '/?p=usdjpy'method="post">
+           <table>
+              <tr>
+                <td>
+                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if USDJPY.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if USDJPY.Strong_Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if USDJPY.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if USDJPY.Strong_Dark_cloud %} checked {% endif %}" >
+                <input type="checkbox" name="Pearcing" value="USDCHF" {% if USDJPY.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if USDJPY.Pearcing %} checked {% endif %}">
+                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if USDJPY.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if USDJPY.Dark_cloud %} checked {% endif %}">
+                </td>
+                <td></td>
+                <td>
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if USDJPY.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if USDJPY.Bulish_Endulfing %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if USDJPY.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if USDJPY.Berish_Endulfing %} checked {% endif %}" >
+                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if USDJPY.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if USDJPY.Bulish_Harami %} checked {% endif %}">
+                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if USDJPY.Berish_Harami %} checked {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if USDJPY.Berish_Harami %} checked {% endif %}">
+                </td>
+              </tr>
+              <tr>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td>
+               <input type="submit" value="Submit">
+             </td>
+             </tr>
+            </table>
+            </form>
+          </div>
+         </div>
+        </div>
+        {% endif %}
+        <div class="col-md-3 col-md-offset-1" id="chart_div">  
+          <!--
+          {% if user %}
+          <form  method="post">
+            <table>
+             <tr>
+             <td>
+            <input type="checkbox" name="GBPUSD" value="GBPUSD" {% if GBPUSD %} checked {% endif %}>GBPUSD<br>
+            <input type="hidden" name="hGBPUSD" value="{% if GBPUSD %} checked {% endif %}">
+            <input type="checkbox" name="EURUSD" value="EURUSD" {% if EURUSD %} checked {% endif %}>EURUSD<br>
+            <input type="hidden" name="hEURUSD" value="{% if EURUSD %} checked {% endif %}" >
+            <input type="checkbox" name="USDCHF" value="USDCHF" {% if USDCHF %} checked {% endif %}>USDCHF<br>
+            <input type= "hidden" name="hUSDCHF" value="{% if USDCHF %} checked {% endif %}">
+            </td>
+             <td>
+            <input type="checkbox" name="USDCAD" value="USDCAD" {% if USDCAD %} checked {% endif %}>USDCAD<br>
+            <input type="hidden" name="hUSDCAD" value="{% if USDCAD %} checked {% endif %}" >
+            <input type="checkbox" name="AUDUSD" value="AUDUSD" {% if AUDUSD %} checked {% endif %}>AUDUSD<br>
+            <input type="hidden" name="hAUDUSD" value="{% if AUDUSD %} checked {% endif %}" >
+            <input type="checkbox" name="EURGBP" value="EURGBP" {% if EURGBP %} checked {% endif %}>EURGBP<br>
+            <input type="hidden" name="hEURGBP" value="{% if EURGBP %} checked {% endif %}" >
+            </td>
+            <td>
+            <input type="checkbox" name="GBPJPY" value="GBPJPY" {% if GBPJPY %} checked {% endif %}>GBPJPY<br>
+             <input type="hidden" name="hGBPJPY" value="{% if GBPJPY %} checked {% endif %}" >
+            <input type="checkbox" name="EURJPY" value="EURJPY" {% if EURJPY %} checked {% endif %}>EURJPY<br>
+            <input type="hidden" name="hEURJPY" value="{% if EURJPY %} checked {% endif %}" >
+            <input type="checkbox" name="USDJPY" value="USDJPY" {% if USDJPY %} checked {% endif %}>USDJPY<br>
+            <input type="hidden" name="hUSDJPY" value="{% if USDJPY %} checked {% endif %}" >
+            </td>
+            </tr>
+            <tr>
+             <td></td>
+             <td></td>
+             <td>
+               <input type="submit" value="Submit">
+             </td>
+             </tr>
+            </table>
+          </form>
+          {% endif %}
+          -->
+          {% if pair_html %}
+            {{pair_html}}
+          {% endif %}
+          {% if table %}
+           {{ table }}
+          {% endif %}
+          {% if html_table %}
+          <table border=1  >
+            {% for elem in html_table %}
+              <tr>
+              {% for e in elem %}
+                <td >
+                 
+                {{ e }}
+                 
+                </td>
+              {% endfor %}  
+            </tr>
+            {% endfor %}  
+          </table>
+          {% endif %}
+       </div>
+       
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+     {% endautoescape %}
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://getbootstrap.com/2.3.2/assets/js/jquery.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-transition.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-alert.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-modal.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-tab.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-tooltip.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-popover.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-button.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-carousel.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>

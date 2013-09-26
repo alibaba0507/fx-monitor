@@ -1,0 +1,61 @@
+<!-- html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          {% for price_data in resultJSON %}
+           {{price_data}} ,
+          {% endfor %}
+        ]);
+
+        var options = {
+          title: 'Price / Time Distribution',
+          hAxis: {title: 'Price', titleTextStyle: {color: 'red'}}
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html -->
+
+
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load('visualization', '1', {'packages':['corechart']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'Price');
+        data.addColumn('number', 'Distribution');
+        {% for price_data in chart %}
+         //var txt = document.getElementById('print').innerHTML;
+         //document.getElementById('print').innerHTML = txt + '<br /> ***** ' + price_data;
+         data.addRow({{price_data}});
+        {% endfor %}
+        var options = {
+          title: 'Price / Time Distribution for {{ pair }}',
+          hAxis: {title: 'Price', titleTextStyle: {color: 'red'}},
+          width: 600, 
+          height:300
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+   <div id="print"></div>
+    <div id="chart_div" style="width: 600px; height: 300px;"></div>
+    {{tbl}}
+    
+ 
