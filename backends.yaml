@@ -1,0 +1,4 @@
+name: mybackend
+class: B8
+instances: 1
+options: dynamic

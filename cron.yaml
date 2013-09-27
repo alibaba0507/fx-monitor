@@ -1,5 +1,6 @@
 cron:
 - description: load Data into memcache
   url: /?cron=1
+  target: mybackend
   schedule: every 25 minutes
   
