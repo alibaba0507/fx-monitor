@@ -6,6 +6,7 @@ import os
 from datetime import date
 import urllib
 from google.appengine.ext import ndb
+from google.appengine.api import mail
 #import Utils
 
 class Pair(ndb.Model):
@@ -100,9 +101,27 @@ def convPatternNameToDbName(patternName):
     return 'Berish_Harami'
 
 
+# this must run as a cron job every hour or so
 def sendEmailForPatternAlert():
   q_pattern = Pattern.query(Pattern.sendEmail == 1).order(Pattern.pair.email)
-    
+  last_email = ''
+  msg = ''
+  subject = 'Fx-Monitor Pattern Alert'
+  for p in q_pattern:
+    if last_email != p.pair.email:
+      if msg != '':
+       message = mail.EmailMessage(sender="fx2go4u@gmail.com",subject=subject)
+       message.to = last_email
+       message.body = """
+       Dear Fx-Monitor User,
+       """
+       message.html = msg
+       message.send()
+       msg = ''
+      last_email = p.pair.email
+    msg += ' Pair [' + p.pair.name + '] Pattern [<a href="http://fx-monitor.appspot.com/?pair=' + p.pair.name + '">' + p.name + '</a>]<br />'
+      
+        
 def updatePatternAlerts(patternName):
    pattern = convPatternNameToDbName(patternName)
    # select all pattern records with this name
@@ -110,6 +129,8 @@ def updatePatternAlerts(patternName):
    for p in q_pattern:
      p.sendEmail = 1
      p.put()
+
+# this must run as a cron job onece a day
 # check the date of the candlestick pattern
 # if find any will add to memcache 
 def chekEmailPatterns(result):
