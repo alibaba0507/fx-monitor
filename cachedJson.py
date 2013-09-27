@@ -18,6 +18,9 @@ class Pattern(ndb.Model):
   name = ndb.StringProperty()
   value = ndb.IntegerProperty()
   pair = ndb.StructuredProperty(Pair)
+  # This will change any time when pattern of the day is found
+  sendEmail = ndb.IntegerProperty(default = 0)
+
 
 
 def savePaternSettings(u_email,pair,pattern,value):
@@ -77,6 +80,65 @@ def getUserPatternSettings(u_email,pair):
   #logging.info('User Pattern Settings [' + str(l) + ']')
   #logging.info('User Pattern Settings INFO ##### [' + str(l['Strong_Pearcing']) + ']')
   return l
+
+def convPatternNameToDbName(patternName):
+  if patternName == '(Very Strong) Pearcing':
+    return 'Strong_Pearcing'
+  if patternName == '(Very Strong) Dark cloud':
+    return 'Strong_Dark_cloud'
+  if patternName == 'Pearcing':
+    return 'Pearcing'
+  if patternName == 'Dark cloud':
+    return 'Dark_cloud'
+  if patternName == 'Bulish Endulfing':
+    return 'Bulish_Endulfing'
+  if patternName == 'Berish Endulfing':
+    return 'Berish_Endulfing'
+  if patternName == 'Bulish Harami':
+    return 'Bulish_Harami'
+  if patternName == 'Berish Harami':
+    return 'Berish_Harami'
+
+
+def sendEmailForPatternAlert():
+  q_pattern = Pattern.query(Pattern.sendEmail == 1).order(Pattern.pair.email)
+    
+def updatePatternAlerts(patternName):
+   pattern = convPatternNameToDbName(patternName)
+   # select all pattern records with this name
+   q_pattern = Pattern.query(Pattern.name == pattern)
+   for p in q_pattern:
+     p.sendEmail = 1
+     p.put()
+# check the date of the candlestick pattern
+# if find any will add to memcache 
+def chekEmailPatterns(result):
+   #client = memcache.Client()
+   today = date.today()
+   resultJSON = json.loads(result)
+   cnt = 0
+   for elem in resultJSON['hist']:
+    cnt += 1
+    #self.response.write("<tr>")
+    i = 0
+    #logging.info(' Start check Email patterns .... ')
+    pair = ''
+    pattern = ''
+    for e in elem:
+      s = urllib.unquote(e).decode("utf-8")
+      if i == 0:
+        pair = s
+      if i == 1:
+        pattern = s
+      if i == 2: # fromat time
+       l = s.split('T')
+       if len(l) > 0 and (today.isoformat() == l[0]):
+        if (today.isoformat() == l[0]): # only today patterns
+         updatePatternAlerts(pattern)
+      i += 1
+      
+      
+      
 def getPaternSettings(u_email,pair,pattern):
    client = memcache.Client()
    pair = pair.lower()
@@ -196,33 +258,6 @@ def checkSRLevels():
       i += 1
   return msg      
 
-# check the date of the candlestick pattern
-# if find any will add to memcache 
-def chekEmailPatterns(result):
-   client = memcache.Client()
-   today = date.today()
-   resultJSON = json.loads(result)
-   cnt = 0
-   for elem in resultJSON['hist']:
-    cnt += 1
-    #self.response.write("<tr>")
-    i = 0
-    #logging.info(' Start check Email patterns .... ')
-    for e in elem:
-      s = urllib.unquote(e).decode("utf-8")
-      if i == 0:
-        pair = s
-      if i == 2: # fromat time
-       l = s.split('T')
-       if len(l) > 0 and (today.isoformat() == l[0]):
-        if (today.isoformat() == l[0]): # only today patterns
-         pattern = client.get('email[' + pair  +'][' + today.isoformat() + ']');
-         if pattern is None or len(pattern) == 0: # add to memcache
-          logging.info(' Add pattern for [' + pair  + ']')
-          memcache.add(key='email[' + pair  +'][' + today.isoformat() + ']',value=pair,time=3600);
-      i += 1
-      
-      
 def loadData():
   client = memcache.Client()
   hist_json = client.get('hist')
