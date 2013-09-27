@@ -102,6 +102,7 @@ def convPatternNameToDbName(patternName):
 
 
 # this must run as a cron job every hour or so
+# use background process
 def sendEmailForPatternAlert():
   q_pattern = Pattern.query(Pattern.sendEmail == 1).order(Pattern.pair.email)
   last_email = ''
@@ -122,6 +123,7 @@ def sendEmailForPatternAlert():
     msg += ' Pair [' + p.pair.name + '] Pattern [<a href="http://fx-monitor.appspot.com/?pair=' + p.pair.name + '">' + p.name + '</a>]<br />'
       
         
+        
 def updatePatternAlerts(patternName):
    pattern = convPatternNameToDbName(patternName)
    # select all pattern records with this name
@@ -133,8 +135,13 @@ def updatePatternAlerts(patternName):
 # this must run as a cron job onece a day
 # check the date of the candlestick pattern
 # if find any will add to memcache 
-def chekEmailPatterns(result):
+def chekEmailPatterns():
    #client = memcache.Client()
+   client = memcache.Client()
+   result = client.get(key='hist')#,value=result.content,time=3600)
+   if result is None:
+     loadData()
+     chekEmailPatterns()
    today = date.today()
    resultJSON = json.loads(result)
    cnt = 0
@@ -318,7 +325,7 @@ def loadData():
       #self.redirect(url_link)
     if result.status_code == 200:
       memcache.add(key='hist',value=result.content,time=3600)
-      chekEmailPatterns(result.content)
+      #chekEmailPatterns(result.content)
   
   if h_gbp is None or len(h_gbp) == 0:
     url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?h=1&p=gbpusd"

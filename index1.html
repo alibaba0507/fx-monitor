@@ -147,26 +147,29 @@
                 <td>
                  
                 <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if GBPUSD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
-                <input type="hidden" name="hStrong_Pearcing" value="{% if GBPUSD.Strong_Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if GBPUSD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
-                <input type="hidden" name="hStrong_Dark_cloud" value="{% if GBPUSD.Strong_Dark_cloud %} checked {% endif %}" >
+                <input type="hidden" name="hStrong_Pearcing" value="{% if GBPUSD.Strong_Pearcing %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Strong_Dark_cloud" value="GBPUSD" {% if GBPUSD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if GBPUSD.Strong_Dark_cloud %} GBPUSD {% endif %}" >
             
-                <input type="checkbox" name="Pearcing" value="USDCHF" {% if GBPUSD.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type="checkbox" name="Pearcing" value="GBPUSD" {% if GBPUSD.Pearcing %} checked {% endif %}>Pearcing<br>
                 <input type= "hidden" name="hPearcing" value="{% if GBPUSD.Pearcing %} checked {% endif %}">
               
-                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if GBPUSD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
-                <input type= "hidden" name="hDark_cloud" value="{% if GBPUSD.Dark_cloud %} checked {% endif %}">
+                <input type="checkbox" name="Dark_cloud" value="" {% if GBPUSD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if GBPUSD.Dark_cloud %} GBPUSD {% endif %}">
                 </td>
                 <td></td>
                 <td>
                 <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if GBPUSD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
-                <input type="hidden" name="hBulish_Endulfing" value="{% if GBPUSD.Bulish_Endulfing %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if GBPUSD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
-                <input type="hidden" name="hBerish_Endulfing" value="{% if GBPUSD.Berish_Endulfing %} checked {% endif %}" >
-                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if GBPUSD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
-                <input type= "hidden" name="hBulish_Harami" value="{% if GBPUS.Bulish_Harami %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if GBPUS.Berish_Harami %} checked {% endif %}>Berish Harami<br>
-                <input type= "hidden" name="hBerish_Harami" value="{% if GBPUSD.Berish_Harami %} checked {% endif %}">
+                <input type="hidden" name="hBulish_Endulfing" value="{% if GBPUSD.Bulish_Endulfing %} GBPUSD {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="GBPUSD" {% if GBPUSD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if GBPUSD.Berish_Endulfing %} GBPUSD {% endif %}" >
+                
+                <input type="checkbox" name="Bulish_Harami" value="GBPUSD" {% if GBPUSD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if GBPUS.Bulish_Harami %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Berish_Harami" value="GBPUSD" {% if GBPUS.Berish_Harami %} GBPUSD {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if GBPUSD.Berish_Harami %} GBPUSD {% endif %}">
                 
                   
                 </td>
@@ -188,26 +191,31 @@
            <table>
               <tr>
                 <td>
-                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if EURUSD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
-                <input type="hidden" name="hStrong_Pearcing" value="{% if EURUSD.Strong_Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if EURUSD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
-                <input type="hidden" name="hStrong_Dark_cloud" value="{% if EURUSD.Strong_Dark_cloud %} checked {% endif %}" >
-                <input type="checkbox" name="Pearcing" value="USDCHF" {% if GBPUSD.Pearcing %} checked {% endif %}>Pearcing<br>
-                <input type= "hidden" name="hPearcing" value="{% if EURUSD.Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if EURUSD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
-                <input type= "hidden" name="hDark_cloud" value="{% if EURUSD.Dark_cloud %} checked {% endif %}">
+                 <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if GBPUSD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if GBPUSD.Strong_Pearcing %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Strong_Dark_cloud" value="GBPUSD" {% if GBPUSD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if GBPUSD.Strong_Dark_cloud %} GBPUSD {% endif %}" >
+            
+                <input type="checkbox" name="Pearcing" value="GBPUSD" {% if GBPUSD.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if GBPUSD.Pearcing %} checked {% endif %}">
+              
+                <input type="checkbox" name="Dark_cloud" value="" {% if GBPUSD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if GBPUSD.Dark_cloud %} GBPUSD {% endif %}">
                 </td>
                 <td></td>
                 <td>
-                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if EURUSD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
-                <input type="hidden" name="hBulish_Endulfing" value="{% if EURUSD.Bulish_Endulfing %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if EURUSD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
-                <input type="hidden" name="hBerish_Endulfing" value="{% if EURUSD.Berish_Endulfing %} checked {% endif %}" >
-                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if EURUSD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
-                <input type= "hidden" name="hBulish_Harami" value="{% if EURUSD.Bulish_Harami %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if EURUSD.Berish_Harami %} checked {% endif %}>Berish Harami<br>
-                <input type= "hidden" name="hBerish_Harami" value="{% if EURUSD.Berish_Harami %} checked {% endif %}">
-               </td>
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if GBPUSD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if GBPUSD.Bulish_Endulfing %} GBPUSD {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="GBPUSD" {% if GBPUSD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if GBPUSD.Berish_Endulfing %} GBPUSD {% endif %}" >
+                
+                <input type="checkbox" name="Bulish_Harami" value="GBPUSD" {% if GBPUSD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if GBPUS.Bulish_Harami %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Berish_Harami" value="GBPUSD" {% if GBPUS.Berish_Harami %} GBPUSD {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if GBPUSD.Berish_Harami %} GBPUSD {% endif %}">
+                 </td>
               </tr>
               <tr>
              <td></td>
@@ -225,26 +233,31 @@
             <table>
               <tr>
                 <td>
-                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if USDCHF.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
-                <input type="hidden" name="hStrong_Pearcing" value="{% if USDCHF.Strong_Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if USDCHF.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
-                <input type="hidden" name="hStrong_Dark_cloud" value="{% if USDCHF.Strong_Dark_cloud %} checked {% endif %}" >
-                <input type="checkbox" name="Pearcing" value="USDCHF" {% if USDCHF.Pearcing %} checked {% endif %}>Pearcing<br>
-                <input type= "hidden" name="hPearcing" value="{% if USDCHF.Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if USDCHF.Dark_cloud %} checked {% endif %}>Dark cloud<br>
-                <input type= "hidden" name="hDark_cloud" value="{% if USDCHF.Dark_cloud %} checked {% endif %}">
+                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if GBPUSD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if GBPUSD.Strong_Pearcing %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Strong_Dark_cloud" value="GBPUSD" {% if GBPUSD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if GBPUSD.Strong_Dark_cloud %} GBPUSD {% endif %}" >
+            
+                <input type="checkbox" name="Pearcing" value="GBPUSD" {% if GBPUSD.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if GBPUSD.Pearcing %} checked {% endif %}">
+              
+                <input type="checkbox" name="Dark_cloud" value="" {% if GBPUSD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if GBPUSD.Dark_cloud %} GBPUSD {% endif %}">
                 </td>
                 <td></td>
                 <td>
-                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if USDCHF.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
-                <input type="hidden" name="hBulish_Endulfing" value="{% if USDCHF.Bulish_Endulfing %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if USDCHF.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
-                <input type="hidden" name="hBerish_Endulfing" value="{% if USDCHF.Berish_Endulfing %} checked {% endif %}" >
-                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if USDCHF.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
-                <input type= "hidden" name="hBulish_Harami" value="{% if USDCHF.Bulish_Harami %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if USDCHF.Berish_Harami %} checked {% endif %}>Berish Harami<br>
-                <input type= "hidden" name="hBerish_Harami" value="{% if USDCHF.Berish_Harami %} checked {% endif %}">
-                </td>
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if GBPUSD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if GBPUSD.Bulish_Endulfing %} GBPUSD {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="GBPUSD" {% if GBPUSD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if GBPUSD.Berish_Endulfing %} GBPUSD {% endif %}" >
+                
+                <input type="checkbox" name="Bulish_Harami" value="GBPUSD" {% if GBPUSD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if GBPUS.Bulish_Harami %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Berish_Harami" value="GBPUSD" {% if GBPUS.Berish_Harami %} GBPUSD {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if GBPUSD.Berish_Harami %} GBPUSD {% endif %}">
+                 </td>
               </tr>
               <tr>
              <td></td>
@@ -262,25 +275,30 @@
             <table>
               <tr>
                 <td>
-               <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if USDCAD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
-                <input type="hidden" name="hStrong_Pearcing" value="{% if USDCAD.Strong_Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if USDCAD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
-                <input type="hidden" name="hStrong_Dark_cloud" value="{% if USDCAD.Strong_Dark_cloud %} checked {% endif %}" >
-                <input type="checkbox" name="Pearcing" value="USDCHF" {% if USDCAD.Pearcing %} checked {% endif %}>Pearcing<br>
-                <input type= "hidden" name="hPearcing" value="{% if USDCAD.Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if USDCAD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
-                <input type= "hidden" name="hDark_cloud" value="{% if USDCAD.Dark_cloud %} checked {% endif %}">
+               <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if GBPUSD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if GBPUSD.Strong_Pearcing %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Strong_Dark_cloud" value="GBPUSD" {% if GBPUSD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if GBPUSD.Strong_Dark_cloud %} GBPUSD {% endif %}" >
+            
+                <input type="checkbox" name="Pearcing" value="GBPUSD" {% if GBPUSD.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if GBPUSD.Pearcing %} checked {% endif %}">
+              
+                <input type="checkbox" name="Dark_cloud" value="" {% if GBPUSD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if GBPUSD.Dark_cloud %} GBPUSD {% endif %}">
                 </td>
                 <td></td>
                 <td>
-                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if USDCAD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
-                <input type="hidden" name="hBulish_Endulfing" value="{% if USDCAD.Bulish_Endulfing %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if USDCAD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
-                <input type="hidden" name="hBerish_Endulfing" value="{% if USDCAD.Berish_Endulfing %} checked {% endif %}" >
-                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if USDCAD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
-                <input type= "hidden" name="hBulish_Harami" value="{% if USDCAD.Bulish_Harami %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if USDCAD.Berish_Harami %} checked {% endif %}>Berish Harami<br>
-                <input type= "hidden" name="hBerish_Harami" value="{% if USDCAD.Berish_Harami %} checked {% endif %}">
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if GBPUSD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if GBPUSD.Bulish_Endulfing %} GBPUSD {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="GBPUSD" {% if GBPUSD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if GBPUSD.Berish_Endulfing %} GBPUSD {% endif %}" >
+                
+                <input type="checkbox" name="Bulish_Harami" value="GBPUSD" {% if GBPUSD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if GBPUS.Bulish_Harami %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Berish_Harami" value="GBPUSD" {% if GBPUS.Berish_Harami %} GBPUSD {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if GBPUSD.Berish_Harami %} GBPUSD {% endif %}">
                  </td>
               </tr>
               <tr>
@@ -299,26 +317,31 @@
            <table>
               <tr>
                 <td>
-                 <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if AUDUSD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
-                <input type="hidden" name="hStrong_Pearcing" value="{% if AUDUSD.Strong_Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if AUDUSD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
-                <input type="hidden" name="hStrong_Dark_cloud" value="{% if AUDUSD.Strong_Dark_cloud %} checked {% endif %}" >
-                <input type="checkbox" name="Pearcing" value="USDCHF" {% if AUDUSD.Pearcing %} checked {% endif %}>Pearcing<br>
-                <input type= "hidden" name="hPearcing" value="{% if AUDUSD.Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if AUDUSD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
-                <input type= "hidden" name="hDark_cloud" value="{% if AUDUSD.Dark_cloud %} checked {% endif %}">
+                 <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if GBPUSD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if GBPUSD.Strong_Pearcing %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Strong_Dark_cloud" value="GBPUSD" {% if GBPUSD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if GBPUSD.Strong_Dark_cloud %} GBPUSD {% endif %}" >
+            
+                <input type="checkbox" name="Pearcing" value="GBPUSD" {% if GBPUSD.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if GBPUSD.Pearcing %} checked {% endif %}">
+              
+                <input type="checkbox" name="Dark_cloud" value="" {% if GBPUSD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if GBPUSD.Dark_cloud %} GBPUSD {% endif %}">
                 </td>
                 <td></td>
                 <td>
-                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if AUDUSD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
-                <input type="hidden" name="hBulish_Endulfing" value="{% if AUDUSD.Bulish_Endulfing %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if AUDUSD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
-                <input type="hidden" name="hBerish_Endulfing" value="{% if AUDUSD.Berish_Endulfing %} checked {% endif %}" >
-                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if AUDUSD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
-                <input type= "hidden" name="hBulish_Harami" value="{% if AUDUSD.Bulish_Harami %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if AUDUSD.Berish_Harami %} checked {% endif %}>Berish Harami<br>
-                <input type= "hidden" name="hBerish_Harami" value="{% if AUDUSD.Berish_Harami %} checked {% endif %}">
-                </td>
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if GBPUSD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if GBPUSD.Bulish_Endulfing %} GBPUSD {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="GBPUSD" {% if GBPUSD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if GBPUSD.Berish_Endulfing %} GBPUSD {% endif %}" >
+                
+                <input type="checkbox" name="Bulish_Harami" value="GBPUSD" {% if GBPUSD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if GBPUS.Bulish_Harami %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Berish_Harami" value="GBPUSD" {% if GBPUS.Berish_Harami %} GBPUSD {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if GBPUSD.Berish_Harami %} GBPUSD {% endif %}">
+                 </td>
               </tr>
               <tr>
              <td></td>
@@ -336,26 +359,31 @@
             <table>
               <tr>
                 <td>
-                 <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if EURGBP.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
-                <input type="hidden" name="hStrong_Pearcing" value="{% if EURGBP.Strong_Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if EURGBP.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
-                <input type="hidden" name="hStrong_Dark_cloud" value="{% if EURGBP.Strong_Dark_cloud %} checked {% endif %}" >
-                <input type="checkbox" name="Pearcing" value="USDCHF" {% if EURGBP.Pearcing %} checked {% endif %}>Pearcing<br>
-                <input type= "hidden" name="hPearcing" value="{% if EURGBP.Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if EURGBP.Dark_cloud %} checked {% endif %}>Dark cloud<br>
-                <input type= "hidden" name="hDark_cloud" value="{% if EURGBP.Dark_cloud %} checked {% endif %}">
+                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if GBPUSD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if GBPUSD.Strong_Pearcing %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Strong_Dark_cloud" value="GBPUSD" {% if GBPUSD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if GBPUSD.Strong_Dark_cloud %} GBPUSD {% endif %}" >
+            
+                <input type="checkbox" name="Pearcing" value="GBPUSD" {% if GBPUSD.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if GBPUSD.Pearcing %} checked {% endif %}">
+              
+                <input type="checkbox" name="Dark_cloud" value="" {% if GBPUSD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if GBPUSD.Dark_cloud %} GBPUSD {% endif %}">
                 </td>
                 <td></td>
                 <td>
-                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if EURGBP.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
-                <input type="hidden" name="hBulish_Endulfing" value="{% if EURGBP.Bulish_Endulfing %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if EURGBP.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
-                <input type="hidden" name="hBerish_Endulfing" value="{% if EURGBP.Berish_Endulfing %} checked {% endif %}" >
-                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if EURGBP.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
-                <input type= "hidden" name="hBulish_Harami" value="{% if EURGBP.Bulish_Harami %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if EURGBP.Berish_Harami %} checked {% endif %}>Berish Harami<br>
-                <input type= "hidden" name="hBerish_Harami" value="{% if EURGBP.Berish_Harami %} checked {% endif %}">
-                </td>
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if GBPUSD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if GBPUSD.Bulish_Endulfing %} GBPUSD {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="GBPUSD" {% if GBPUSD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if GBPUSD.Berish_Endulfing %} GBPUSD {% endif %}" >
+                
+                <input type="checkbox" name="Bulish_Harami" value="GBPUSD" {% if GBPUSD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if GBPUS.Bulish_Harami %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Berish_Harami" value="GBPUSD" {% if GBPUS.Berish_Harami %} GBPUSD {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if GBPUSD.Berish_Harami %} GBPUSD {% endif %}">
+                 </td>
               </tr>
               <tr>
              <td></td>
@@ -373,25 +401,30 @@
             <table>
               <tr>
                 <td>
-                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if GBPJPY.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
-                <input type="hidden" name="hStrong_Pearcing" value="{% if GBPJPY.Strong_Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if GBPJPY.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
-                <input type="hidden" name="hStrong_Dark_cloud" value="{% if GBPJPY.Strong_Dark_cloud %} checked {% endif %}" >
-                <input type="checkbox" name="Pearcing" value="USDCHF" {% if GBPJPY.Pearcing %} checked {% endif %}>Pearcing<br>
-                <input type= "hidden" name="hPearcing" value="{% if GBPJPY.Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if GBPJPY.Dark_cloud %} checked {% endif %}>Dark cloud<br>
-                <input type= "hidden" name="hDark_cloud" value="{% if GBPJPY.Dark_cloud %} checked {% endif %}">
+                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if GBPUSD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if GBPUSD.Strong_Pearcing %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Strong_Dark_cloud" value="GBPUSD" {% if GBPUSD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if GBPUSD.Strong_Dark_cloud %} GBPUSD {% endif %}" >
+            
+                <input type="checkbox" name="Pearcing" value="GBPUSD" {% if GBPUSD.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if GBPUSD.Pearcing %} checked {% endif %}">
+              
+                <input type="checkbox" name="Dark_cloud" value="" {% if GBPUSD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if GBPUSD.Dark_cloud %} GBPUSD {% endif %}">
                 </td>
                 <td></td>
                 <td>
-                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if GBPJPY.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
-                <input type="hidden" name="hBulish_Endulfing" value="{% if GBPJPY.Bulish_Endulfing %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if GBPJPY.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
-                <input type="hidden" name="hBerish_Endulfing" value="{% if GBPJPY.Berish_Endulfing %} checked {% endif %}" >
-                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if GBPJPY.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
-                <input type= "hidden" name="hBulish_Harami" value="{% if GBPJPY.Bulish_Harami %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if GBPJPY.Berish_Harami %} checked {% endif %}>Berish Harami<br>
-                <input type= "hidden" name="hBerish_Harami" value="{% if GBPJPY.Berish_Harami %} checked {% endif %}">
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if GBPUSD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if GBPUSD.Bulish_Endulfing %} GBPUSD {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="GBPUSD" {% if GBPUSD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if GBPUSD.Berish_Endulfing %} GBPUSD {% endif %}" >
+                
+                <input type="checkbox" name="Bulish_Harami" value="GBPUSD" {% if GBPUSD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if GBPUS.Bulish_Harami %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Berish_Harami" value="GBPUSD" {% if GBPUS.Berish_Harami %} GBPUSD {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if GBPUSD.Berish_Harami %} GBPUSD {% endif %}">
                 </td>
               </tr>
               <tr>
@@ -410,25 +443,30 @@
             <table>
               <tr>
                 <td>
-                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if EURJPY.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
-                <input type="hidden" name="hStrong_Pearcing" value="{% if EURJPY.Strong_Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if EURJPY.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
-                <input type="hidden" name="hStrong_Dark_cloud" value="{% if EURJPY.Strong_Dark_cloud %} checked {% endif %}" >
-                <input type="checkbox" name="Pearcing" value="USDCHF" {% if EURJPY.Pearcing %} checked {% endif %}>Pearcing<br>
-                <input type= "hidden" name="hPearcing" value="{% if EURJPY.Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if EURJPY.Dark_cloud %} checked {% endif %}>Dark cloud<br>
-                <input type= "hidden" name="hDark_cloud" value="{% if EURJPY.Dark_cloud %} checked {% endif %}">
+                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if GBPUSD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if GBPUSD.Strong_Pearcing %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Strong_Dark_cloud" value="GBPUSD" {% if GBPUSD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if GBPUSD.Strong_Dark_cloud %} GBPUSD {% endif %}" >
+            
+                <input type="checkbox" name="Pearcing" value="GBPUSD" {% if GBPUSD.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if GBPUSD.Pearcing %} checked {% endif %}">
+              
+                <input type="checkbox" name="Dark_cloud" value="" {% if GBPUSD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if GBPUSD.Dark_cloud %} GBPUSD {% endif %}">
                 </td>
                 <td></td>
                 <td>
-                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if EURJPY.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
-                <input type="hidden" name="hBulish_Endulfing" value="{% if EURJPY.Bulish_Endulfing %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if EURJPY.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
-                <input type="hidden" name="hBerish_Endulfing" value="{% if EURJPY.Berish_Endulfing %} checked {% endif %}" >
-                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if EURJPY.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
-                <input type= "hidden" name="hBulish_Harami" value="{% if EURJPY.Bulish_Harami %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if EURJPY.Berish_Harami %} checked {% endif %}>Berish Harami<br>
-                <input type= "hidden" name="hBerish_Harami" value="{% if EURJPY.Berish_Harami %} checked {% endif %}">
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if GBPUSD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if GBPUSD.Bulish_Endulfing %} GBPUSD {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="GBPUSD" {% if GBPUSD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if GBPUSD.Berish_Endulfing %} GBPUSD {% endif %}" >
+                
+                <input type="checkbox" name="Bulish_Harami" value="GBPUSD" {% if GBPUSD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if GBPUS.Bulish_Harami %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Berish_Harami" value="GBPUSD" {% if GBPUS.Berish_Harami %} GBPUSD {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if GBPUSD.Berish_Harami %} GBPUSD {% endif %}">
                 </td>
               </tr>
               <tr>
@@ -447,25 +485,30 @@
            <table>
               <tr>
                 <td>
-                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if USDJPY.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
-                <input type="hidden" name="hStrong_Pearcing" value="{% if USDJPY.Strong_Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Strong_Dark_cloud" value="EURUSD" {% if USDJPY.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
-                <input type="hidden" name="hStrong_Dark_cloud" value="{% if USDJPY.Strong_Dark_cloud %} checked {% endif %}" >
-                <input type="checkbox" name="Pearcing" value="USDCHF" {% if USDJPY.Pearcing %} checked {% endif %}>Pearcing<br>
-                <input type= "hidden" name="hPearcing" value="{% if USDJPY.Pearcing %} checked {% endif %}">
-                <input type="checkbox" name="Dark_cloud" value="USDCHF" {% if USDJPY.Dark_cloud %} checked {% endif %}>Dark cloud<br>
-                <input type= "hidden" name="hDark_cloud" value="{% if USDJPY.Dark_cloud %} checked {% endif %}">
+                <input type="checkbox" name="Strong_Pearcing" value="GBPUSD" {% if GBPUSD.Strong_Pearcing %} checked {% endif %}>(Very Strong) Pearcing<br>
+                <input type="hidden" name="hStrong_Pearcing" value="{% if GBPUSD.Strong_Pearcing %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Strong_Dark_cloud" value="GBPUSD" {% if GBPUSD.Strong_Dark_cloud %} checked {% endif %}>(Very Strong) Dark cloud<br>
+                <input type="hidden" name="hStrong_Dark_cloud" value="{% if GBPUSD.Strong_Dark_cloud %} GBPUSD {% endif %}" >
+            
+                <input type="checkbox" name="Pearcing" value="GBPUSD" {% if GBPUSD.Pearcing %} checked {% endif %}>Pearcing<br>
+                <input type= "hidden" name="hPearcing" value="{% if GBPUSD.Pearcing %} checked {% endif %}">
+              
+                <input type="checkbox" name="Dark_cloud" value="" {% if GBPUSD.Dark_cloud %} checked {% endif %}>Dark cloud<br>
+                <input type= "hidden" name="hDark_cloud" value="{% if GBPUSD.Dark_cloud %} GBPUSD {% endif %}">
                 </td>
                 <td></td>
                 <td>
-                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if USDJPY.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
-                <input type="hidden" name="hBulish_Endulfing" value="{% if USDJPY.Bulish_Endulfing %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Endulfing" value="EURUSD" {% if USDJPY.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
-                <input type="hidden" name="hBerish_Endulfing" value="{% if USDJPY.Berish_Endulfing %} checked {% endif %}" >
-                <input type="checkbox" name="Bulish_Harami" value="USDCHF" {% if USDJPY.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
-                <input type= "hidden" name="hBulish_Harami" value="{% if USDJPY.Bulish_Harami %} checked {% endif %}">
-                <input type="checkbox" name="Berish_Harami" value="USDCHF" {% if USDJPY.Berish_Harami %} checked {% endif %}>Berish Harami<br>
-                <input type= "hidden" name="hBerish_Harami" value="{% if USDJPY.Berish_Harami %} checked {% endif %}">
+                <input type="checkbox" name="Bulish_Endulfing" value="GBPUSD" {% if GBPUSD.Bulish_Endulfing %} checked {% endif %}>Bulish Endulfing<br>
+                <input type="hidden" name="hBulish_Endulfing" value="{% if GBPUSD.Bulish_Endulfing %} GBPUSD {% endif %}">
+                <input type="checkbox" name="Berish_Endulfing" value="GBPUSD" {% if GBPUSD.Berish_Endulfing %} checked {% endif %}>Berish Endulfing<br>
+                <input type="hidden" name="hBerish_Endulfing" value="{% if GBPUSD.Berish_Endulfing %} GBPUSD {% endif %}" >
+                
+                <input type="checkbox" name="Bulish_Harami" value="GBPUSD" {% if GBPUSD.Bulish_Harami %} checked {% endif %}>Bulish Harami<br>
+                <input type= "hidden" name="hBulish_Harami" value="{% if GBPUS.Bulish_Harami %} GBPUSD {% endif %}">
+                
+                <input type="checkbox" name="Berish_Harami" value="GBPUSD" {% if GBPUS.Berish_Harami %} GBPUSD {% endif %}>Berish Harami<br>
+                <input type= "hidden" name="hBerish_Harami" value="{% if GBPUSD.Berish_Harami %} GBPUSD {% endif %}">
                 </td>
               </tr>
               <tr>

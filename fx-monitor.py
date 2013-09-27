@@ -428,6 +428,7 @@ class MainHandler(webapp2.RequestHandler):
   def post(self):
     user = users.get_current_user()
     l = []
+    logging.debug('Strong_Pearcing [' + self.request.get('Strong_Pearcing') + '][' + self.request.get('hStrong_Pearcing') + '][' + self.request.get('p') + ']')
     if self.request.get('Strong_Pearcing') != self.request.get('hStrong_Pearcing'):
      #logging.info('Return from checkbox [' + self.request.get('p') + '] Strong_Pearcing ')
      if len(self.request.get('Strong_Pearcing')) > 0:
@@ -481,13 +482,15 @@ class MainHandler(webapp2.RequestHandler):
        cachedJson.savePaternSettings(user.email(),self.request.get('p'),'Berish_Endulfing',0)
        
     
+    logging.debug('Bulish Harami [' + self.request.get('Bulish_Harami') + '][' + self.request.get('hBulish_Harami') + ']')
     if self.request.get('Bulish_Harami') != self.request.get('hBulish_Harami'):
       #logging.info('Return from checkbox [' + self.request.get('p') + '] Bulish_Harami ')
      #logging.info('Return from checkbox [' + self.request.get('GBPUSD') + '] hCheckBox [' + self.request.get('hGBPUSD') + ']')
       if len(self.request.get('Bulish_Harami')) > 0:
-     # logging.info('Calling saveUserSettings ......')
+       logging.info('Calling savePaternSettings ...... Selected ...')
        cachedJson.savePaternSettings(user.email(),self.request.get('p'),'Bulish_Harami',1)
       else:
+       logging.info('Calling savePaternSettings ...... NOT Selected ...')  
        cachedJson.savePaternSettings(user.email(),self.request.get('p'),'Bulish_Harami',0)
        
     if self.request.get('Berish_Harami') != self.request.get('hBerish_Harami'):
