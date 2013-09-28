@@ -6,13 +6,13 @@ cron:
 
 - description: check for occurance of the patterns for current day
   url: /?checkPatterns=1
-  target: checkPatterns
+  #target: checkPatterns
   schedule: every day 23:00
   timezone: Africa/Johannesburg
 
 
 - description: Send alert emails to users if any
   url: /?sendEmailForPatternAlert=1
-  target: sendEmailForPatternAlert
+  #target: sendEmailForPatternAlert
   schedule: every 2 hours
   timezone: Africa/Johannesburg
