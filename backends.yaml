@@ -1,9 +1,9 @@
 backends:
  - name: cron
-   start: fx-monitor.app
+   start: fx-monitor.py
    class: B1
    instances: 1
-   options: failfast 
+   options: dynamic 
    
    
    
