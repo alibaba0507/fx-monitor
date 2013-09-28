@@ -1,9 +1,9 @@
 backends:
  - name: cron
-   start: fx-monitor.py
    class: B1
    instances: 1
-   options: dynamic 
+   options: dynamic
+   start: fx-monitor.py
    
    
    
