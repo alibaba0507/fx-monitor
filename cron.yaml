@@ -11,8 +11,8 @@ cron:
   timezone: Africa/Johannesburg
 
 
-- description: Send alert emails to users if any
-  url: /?sendEmailForPatternAlert=1
+#- description: Send alert emails to users if any
+#  url: /?sendEmailForPatternAlert=1
   #target: sendEmailForPatternAlert
-  schedule: every 2 hours
-  timezone: Africa/Johannesburg
+#  schedule: every 2 hours
+#  timezone: Africa/Johannesburg
