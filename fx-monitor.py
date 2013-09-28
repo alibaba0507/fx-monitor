@@ -19,20 +19,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'])
 '''
-def getLoginInfo(uri):
-    user = users.get_current_user()
-    url = users.create_login_url(uri)
-    url_linktext = 'Login'
-    url_user = ''
-    if user: # check for user is login
-     url = users.create_logout_url(uri)
-     url_linktext = 'Logout'
-     
-    ret = []
-    ret.insert(0,url)
-    ret.insert(1, url_linktext)
-    ret.insert(2,user) 
-    return ret
+
 class MainHandler(webapp2.RequestHandler):
   
   def get(self):

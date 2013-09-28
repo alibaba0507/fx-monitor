@@ -14,7 +14,7 @@ inbound_services:
 
 handlers:
 - url: /
-  script: fx-monitor.app
+  script: fx-start.app
     
 - url: /?cron=1
   script: fx-monitor.app
