@@ -1,6 +1,18 @@
 cron:
 - description: load Data into memcache
   url: /?cron=1
-  target: mybackend
+  target: cron
   schedule: every 25 minutes
-  
+
+- description: check for occurance of the patterns for current day
+  url: /?checkPatterns=1
+  target: checkPatterns
+  schedule: every day 23:00
+  timezone: Africa/Johannesburg
+
+
+- description: Send alert emails to users if any
+  url: /?sendEmailForPatternAlert=1
+  target: sendEmailForPatternAlert
+  schedule: every 2 hours
+  timezone: Africa/Johannesburg

@@ -1,4 +1,6 @@
-name: mybackend
-class: B8
-instances: 1
-options: dynamic
+backends:
+ - name: cron
+   start: fx-monitor.app
+   class: B1
+   instances: 1
+   options: failfast 

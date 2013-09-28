@@ -14,10 +14,19 @@ automatic_scaling:
 handlers:
 - url: /
   script: fx-monitor.app
-  
+    
 - url: /?cron=1
   script: fx-monitor.app
+  login: admin
+  
+- url: /?checkPatterns=1
+  script: fx-monitor.app
+  login: admin
 
+- url: /?sendEmailForPatternAlert=1
+  script: fx-monitor.app
+  login: admin
+  
 - url: /?c=1
   script: fx-monitor.app
   

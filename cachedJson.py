@@ -121,7 +121,8 @@ def sendEmailForPatternAlert():
        msg = ''
       last_email = p.pair.email
     msg += ' Pair [' + p.pair.name + '] Pattern [<a href="http://fx-monitor.appspot.com/?pair=' + p.pair.name + '">' + p.name + '</a>]<br />'
-      
+    p.sendEmail = 0 # reset email flag
+    p.put()
         
         
 def updatePatternAlerts(patternName):
@@ -137,10 +138,18 @@ def updatePatternAlerts(patternName):
 # if find any will add to memcache 
 def chekEmailPatterns():
    #client = memcache.Client()
-   client = memcache.Client()
-   result = client.get(key='hist')#,value=result.content,time=3600)
+   # we must ensure we have the latest
+   url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?h=1"
+   urlfetch.set_default_fetch_deadline(45)
+   result = urlfetch.fetch(url_link)
+      #self.redirect(url_link)
+   if result.status_code == 200:
+    memcache.add(key='hist',value=result.content,time=3600)
+   else:
+    chekEmailPatterns()
+   
+   result = hist_json = memcache.get('hist')#client.get(key='hist')#,value=result.content,time=3600)
    if result is None:
-     loadData()
      chekEmailPatterns()
    today = date.today()
    resultJSON = json.loads(result)
