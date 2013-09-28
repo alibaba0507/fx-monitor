@@ -10,7 +10,7 @@ cron:
   schedule: every day 23:00
   timezone: Africa/Johannesburg
 
-
+#just comment
 - description: Send alert emails to users if any
   url: /?sendEmailForPatternAlert=1
   #target: sendEmailForPatternAlert
