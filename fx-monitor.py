@@ -66,9 +66,9 @@ class MainHandler(webapp2.RequestHandler):
         message.html = msg
         message.send()
     elif self.request.get('sendEmailForPatternAlert'):
-      sendEmailForPatternAlert() #cron to send emails to user
+      cachedJson.sendEmailForPatternAlert() #cron to send emails to user
     elif self.request.get('checkPatterns'):
-      chekEmailPatterns() # cron run once a day and record patterns
+      cachedJson.chekEmailPatterns() # cron run once a day and record patterns
     elif self.request.get('cron'):
       cachedJson.loadData()
     elif self.request.get('pair'):
