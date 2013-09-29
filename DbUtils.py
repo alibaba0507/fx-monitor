@@ -15,6 +15,39 @@ class Pattern(ndb.Model):
   # This will change any time when pattern of the day is found
   sendEmail = ndb.IntegerProperty(default = 0)
 
+#Save user pattern settings
+def savePaternSettings(u_email,pair,pattern,value):
+   client = memcache.Client()
+   pair = pair.lower()
+   qry = Pair.query(Pair.name == pair,Pair.email == u_email)
+   if qry.count() > 0:
+     p = qry.get()
+     q_pattern = Pattern.query(Pattern.name == pattern,Pattern.pair == p)
+     if value > 0:
+       if q_pattern.count() == 0:
+        pt = Pattern(name = pattern,value = 1,pair = p)
+        pt.put() # save to db
+       client.set(key='pairs[' + pair + '][' + u_email + '][' + pattern + ']',value=1,time=3600)
+     else:
+       if q_pattern.count() > 0:
+         pt = q_pattern.get()
+         pt.key.delete() # remove from db
+       client.delete(key='pairs[' + pair + '][' + u_email + '][' + pattern + ']')
+   else: # save pair
+    p = Pair(name = pair,email = u_email,value = 1)
+    p.put()
+    q_pattern = Pattern.query(Pattern.name == pattern,Pattern.pair == p)
+    if value > 0:
+      if q_pattern.count() == 0:
+       pt = Pattern(name = pattern,value = 1,pair = p)
+       pt.put() # save to db
+       client.set(key='pairs[' + pair + '][' + u_email + '][' + pattern + ']',value=1,time=3600)
+      else:
+       if q_pattern.count() > 0:
+         pt = q_pattern.get()
+         pt.key.delete() # remove from db
+       client.delete(key='pairs[' + pair + '][' + u_email + '][' + pattern + ']')
+
 
 # create list of all users settings linked to selected pair
 #@param u_email - user mail
