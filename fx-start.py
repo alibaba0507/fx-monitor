@@ -20,7 +20,6 @@ class MainHandler(webapp2.RequestHandler):
    #invoke by cron job
    if self.request.get('cron'):
       cachedJson.loadData()
-      return
    elif self.request.get('pair'):
      pair = self.request.get('pair')
      hist_json = Fx_Utils.getCachedPairData(pair)
@@ -31,6 +30,8 @@ class MainHandler(webapp2.RequestHandler):
      resultJSON = json.loads(hist_json) 
      patternList = Fx_Utils.constPatternList(resultJSON['hist'],None)
      template_values = Fx_Utils.constTemplateValues(userInfo,patternList,None)
+     path = os.path.join(os.path.dirname(__file__), 'index1.html')
+     self.response.out.write(template.render(path,template_values))  
    elif self.request.get('pv'):
      hist_json = memcache.get('pv')
      while hist_json is None: # looping till get some data
@@ -42,7 +43,8 @@ class MainHandler(webapp2.RequestHandler):
      resultJSON = json.loads(hist_json)
      patternList = Fx_Utils.constPatternList(resultJSON['hist'],pair)
      template_values = Fx_Utils.constTemplateValues(userInfo,patternList,1)
-     
+     path = os.path.join(os.path.dirname(__file__), 'index1.html')
+     self.response.out.write(template.render(path,template_values))  
    else:
     # get history table for all pairs patterns
     hist_json = memcache.get('hist')
@@ -53,9 +55,8 @@ class MainHandler(webapp2.RequestHandler):
     resultJSON = json.loads(hist_json) 
     patternList = Fx_Utils.constPatternList(resultJSON['hist'],None)
     template_values = Fx_Utils.constTemplateValues(userInfo,patternList,None)
-   
-   path = os.path.join(os.path.dirname(__file__), 'index1.html')
-   self.response.out.write(template.render(path,template_values))
+    path = os.path.join(os.path.dirname(__file__), 'index1.html')
+    self.response.out.write(template.render(path,template_values))  
     
     
   def post(self):
