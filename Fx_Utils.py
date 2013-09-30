@@ -27,10 +27,11 @@ def getCachedPairData(pair):
     
 def constTemplateValues(userInfo,patternList,is_pv):
   user = users.get_current_user()
+  #loggin.info(' IS PV Call ... [' + is_pv + ']')
   if is_pv:
     pair_html = getPairAsPVLinks()
   else:
-    pair_html = getPairAsPVLinks()
+    pair_html = getPairsAsLinks()
   if user:
     template_values = {
      'pair_html' : pair_html,
@@ -50,7 +51,7 @@ def constTemplateValues(userInfo,patternList,is_pv):
      }
   else:
     template_values = {
-        'pair_html' : getPairsAsLinks(),
+        'pair_html' : pair_html,
         'html_table' : patternList,
         'url' : userInfo[0],
         'url_text' : userInfo[1],

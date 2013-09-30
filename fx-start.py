@@ -7,7 +7,7 @@ from google.appengine.api import memcache
 import logging
 from google.appengine.api import users
 import Fx_Utils
-
+import logging
 
     
 # Class that handle url reqest (GET or POST)
