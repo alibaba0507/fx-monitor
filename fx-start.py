@@ -20,6 +20,7 @@ class MainHandler(webapp2.RequestHandler):
    #invoke by cron job
    if self.request.get('cron'):
       cachedJson.loadData()
+      return
    elif self.request.get('pair'):
      pair = self.request.get('pair')
      hist_json = Fx_Utils.getCachedPairData(pair)
