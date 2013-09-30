@@ -25,11 +25,15 @@ def getCachedPairData(pair):
     return memcache.get('h_gbpjpy')
     
     
-def constTemplateValues(userInfo,patternList):
+def constTemplateValues(userInfo,patternList,is_pv):
   user = users.get_current_user()
+  if is_pv:
+    pair_html = getPairAsPVLinks()
+  else:
+    pair_html = getPairAsPVLinks()
   if user:
     template_values = {
-     'pair_html' : getPairsAsLinks(),
+     'pair_html' : pair_html,
      'html_table' : patternList,
      'url' : userInfo[0],
      'url_text' : userInfo[1],
@@ -98,6 +102,18 @@ def getLoginInfo(uri):
     ret.insert(2,user) 
     return ret
 
+
+def getPairAsPVLinks():
+  pair_html = '<p> For price distribution price check ... <br /> '
+  pair_html += '<a  href="/?pv=1&p=gbpusd">GBPUSD</a>, '
+  pair_html += '<a  href="/?pv=1&p=eurusd">EURUSD</a>, '
+  pair_html += '<a  href="/?pv=1&p=usdchf">USDCHF</a>, '
+  pair_html += '<a  href="/?pv=1&p=usdcad">USDCAD</a>, '
+  pair_html += '<a  href="/?pv=1&p=audusd">AUDUSD</a>, '
+  pair_html += '<a  href="/?pv=1&p=eurgbp">EURGBP</a>, '
+  pair_html += '<a  href="/?pv=1&p=gbpjpy">GBPJPY</a>, '
+  pair_html += '<a  href="/?pv=1&p=eurjpy">EURJPY</a>'
+  return pair_html
 def getPairsAsLinks():
   pair_html = '<p> For price distribution price check ... <br /> '
   pair_html += '<a href="/?pair=gbpusd">GBPUSD</a>, '
@@ -111,5 +127,5 @@ def getPairsAsLinks():
   return pair_html
   
 
-def loadPatternHistory(uri):
+#def loadPatternHistory(uri):
   

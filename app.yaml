@@ -17,7 +17,7 @@ handlers:
   script: fx-start.app
     
 - url: /?cron=1
-  script: fx-monitor.app
+  script: fx-start.app
   login: admin
   
 - url: /?checkPatterns=1
