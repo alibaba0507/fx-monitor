@@ -3,7 +3,7 @@ backends:
    class: B1
    instances: 1
    options: dynamic
-   start: fx-start.app
+   //start: fx-start.app
    
    
    
