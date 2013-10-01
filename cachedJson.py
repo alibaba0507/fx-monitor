@@ -307,8 +307,109 @@ def loadData():
   h_eurgbp = client.get('h_eurgbp')
   h_gbpjpy = client.get('h_gbpjpy')
   h_eurjpy = client.get('h_eurjpy')
+  pv_gbp = client.get('pv_gbpusd')
+  pv_eur = client.get('pv_eurusd')
+  pv_chf = client.get('pv_usdchf')
+  pv_cad = client.get('pv_usdcad')
+  pv_aud = client.get('pv_audusd')
+  pv_jpy = client.get('pv_usdjpy')
+  pv_eurgbp = client.get('pv_eurgbp')
+  pv_gbpjpy = client.get('pv_gbpjpy')
+  pv_eurjpy = client.get('pv_eurjpy')
   
   sr_lines = client.get('sr_lines')
+  
+  if pv_gbp is None or len(pv_gbp) == 0:
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=gbpusd&limit=10"
+    urlfetch.set_default_fetch_deadline(45)
+    result = urlfetch.fetch(url_link)
+    logging.debug('before save to memcache')
+      #self.redirect(url_link)
+    if result.status_code == 200:
+      logging.debug('save to memcache')
+      memcache.add(key='pv_gbpusd',value=result.content,time=3600)
+  
+  if pv_eur is None or len(pv_eur) == 0:
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=eurusd&limit=10"
+    urlfetch.set_default_fetch_deadline(45)
+    result = urlfetch.fetch(url_link)
+    logging.debug('before save to memcache')
+      #self.redirect(url_link)
+    if result.status_code == 200:
+      logging.debug('save to memcache')
+      memcache.add(key='pv_eurusd',value=result.content,time=3600)
+  
+  if pv_chf is None or len(pv_chf) == 0:
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=usdchf&limit=10"
+    urlfetch.set_default_fetch_deadline(45)
+    result = urlfetch.fetch(url_link)
+    logging.debug('before save to memcache')
+      #self.redirect(url_link)
+    if result.status_code == 200:
+      logging.debug('save to memcache')
+      memcache.add(key='pv_usdchf',value=result.content,time=3600)
+  
+  if pv_cad is None or len(pv_cad) == 0:
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=usdcad&limit=10"
+    urlfetch.set_default_fetch_deadline(45)
+    result = urlfetch.fetch(url_link)
+    logging.debug('before save to memcache')
+      #self.redirect(url_link)
+    if result.status_code == 200:
+      logging.debug('save to memcache')
+      memcache.add(key='pv_usdcad',value=result.content,time=3600)
+  
+  if pv_aud is None or len(pv_aud) == 0:
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=audusd&limit=10"
+    urlfetch.set_default_fetch_deadline(45)
+    result = urlfetch.fetch(url_link)
+    logging.debug('before save to memcache')
+      #self.redirect(url_link)
+    if result.status_code == 200:
+      logging.debug('save to memcache')
+      memcache.add(key='pv_audusd',value=result.content,time=3600)
+  
+  if pv_jpy is None or len(pv_jpy) == 0:
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=usdjpy&limit=10"
+    urlfetch.set_default_fetch_deadline(45)
+    result = urlfetch.fetch(url_link)
+    logging.debug('before save to memcache')
+      #self.redirect(url_link)
+    if result.status_code == 200:
+      logging.debug('save to memcache')
+      memcache.add(key='pv_usdjpy',value=result.content,time=3600)
+  
+  if pv_eurgbp is None or len(pv_eurgbp) == 0:
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=eurgbp&limit=10"
+    urlfetch.set_default_fetch_deadline(45)
+    result = urlfetch.fetch(url_link)
+    logging.debug('before save to memcache')
+      #self.redirect(url_link)
+    if result.status_code == 200:
+      logging.debug('save to memcache')
+      memcache.add(key='pv_eurgbp',value=result.content,time=3600)
+  
+  
+  if pv_gbpjpy is None or len(pv_gbpjpy) == 0:
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=gbpjpy&limit=10"
+    urlfetch.set_default_fetch_deadline(45)
+    result = urlfetch.fetch(url_link)
+    logging.debug('before save to memcache')
+      #self.redirect(url_link)
+    if result.status_code == 200:
+      logging.debug('save to memcache')
+      memcache.add(key='pv_gbpjpy',value=result.content,time=3600)
+  
+  
+  if pv_eurjpy is None or len(pv_eurjpy) == 0:
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=eurjpy&limit=10"
+    urlfetch.set_default_fetch_deadline(45)
+    result = urlfetch.fetch(url_link)
+    logging.debug('before save to memcache')
+      #self.redirect(url_link)
+    if result.status_code == 200:
+      logging.debug('save to memcache')
+      memcache.add(key='pv_eurjpy',value=result.content,time=3600)
   
   if sr_lines is None or len(sr_lines) == 0:
     url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?r=1"

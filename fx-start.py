@@ -34,15 +34,19 @@ class MainHandler(webapp2.RequestHandler):
      path = os.path.join(os.path.dirname(__file__), 'index1.html')
      self.response.out.write(template.render(path,template_values))  
    elif self.request.get('pv'):
-     hist_json = memcache.get('pv')
+     if self.request.get('p'):
+      hist_json = memcache.get('pv_' + self.request.get('p'))
+     else:
+      hist_json = memcache.get('pv')
+      
      while hist_json is None: # looping till get some data
       cachedJson.loadData()
       hist_json = memcache.get('pv')
      pair = None
-     if self.request.get('p'):
-      pair = self.request.get('p')
+     #if self.request.get('p'):
+     # pair = self.request.get('p')
      resultJSON = json.loads(hist_json)
-     patternList = Fx_Utils.constPatternList(resultJSON['hist'],pair)
+     patternList = Fx_Utils.constPatternList(resultJSON['hist'],None)
      template_values = Fx_Utils.constTemplateValues(userInfo,patternList,1)
      path = os.path.join(os.path.dirname(__file__), 'index1.html')
      self.response.out.write(template.render(path,template_values))  
@@ -64,11 +68,11 @@ class MainHandler(webapp2.RequestHandler):
     user = users.get_current_user()
     l = []
     
-    logging.debug('Strong_Pearcing [' + self.request.get('Strong_Pearcing') + '][' + self.request.get('hStrong_Pearcing') + '][' + self.request.get('p') + ']')
+    #logging.debug('Strong_Pearcing [' + self.request.get('Strong_Pearcing') + '][' + self.request.get('hStrong_Pearcing') + '][' + self.request.get('p') + ']')
     if self.request.get('Strong_Pearcing') != self.request.get('hStrong_Pearcing'):
-     logging.info('Return from checkbox [' + self.request.get('p') + '] Strong_Pearcing ')
+     #logging.info('Return from checkbox [' + self.request.get('p') + '] Strong_Pearcing ')
      if len(self.request.get('Strong_Pearcing')) > 0:
-      logging.info('Calling saveUserSettings ......')
+      #logging.info('Calling saveUserSettings ......')
       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Strong_Pearcing',1)
      else:
        DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Strong_Pearcing',0)
