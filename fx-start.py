@@ -7,6 +7,7 @@ from google.appengine.api import memcache
 import logging
 from google.appengine.api import users
 import Fx_Utils
+import DbUtils
 import logging
 
     
@@ -62,11 +63,12 @@ class MainHandler(webapp2.RequestHandler):
   def post(self):
     user = users.get_current_user()
     l = []
-    #logging.debug('Strong_Pearcing [' + self.request.get('Strong_Pearcing') + '][' + self.request.get('hStrong_Pearcing') + '][' + self.request.get('p') + ']')
+    
+    logging.debug('Strong_Pearcing [' + self.request.get('Strong_Pearcing') + '][' + self.request.get('hStrong_Pearcing') + '][' + self.request.get('p') + ']')
     if self.request.get('Strong_Pearcing') != self.request.get('hStrong_Pearcing'):
-     #logging.info('Return from checkbox [' + self.request.get('p') + '] Strong_Pearcing ')
+     logging.info('Return from checkbox [' + self.request.get('p') + '] Strong_Pearcing ')
      if len(self.request.get('Strong_Pearcing')) > 0:
-     # logging.info('Calling saveUserSettings ......')
+      logging.info('Calling saveUserSettings ......')
       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Strong_Pearcing',1)
      else:
        DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Strong_Pearcing',0)

@@ -1,5 +1,6 @@
 from google.appengine.ext import ndb
-
+from google.appengine.api import memcache
+import logging
 
 #db table for pair
 class Pair(ndb.Model):
@@ -73,7 +74,7 @@ def getPaternSettings(u_email,pair,pattern):
    client = memcache.Client()
    pair = pair.lower()
    ret_pattern = client.get(key='pairs[' + pair + '][' + u_email + '][' + pattern + ']')
-   #logging.info(' Get Patterns Settings [' + pair  +'][' + pattern + '][' + str(ret_pattern) + ']')
+   logging.info(' Get Patterns Settings [' + pair  +'][' + pattern + '][' + str(ret_pattern) + ']')
    if ret_pattern: return ret_pattern
    else:
      qry = Pair.query(Pair.name == pair,Pair.email == u_email)
