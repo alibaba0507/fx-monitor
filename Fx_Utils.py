@@ -3,7 +3,7 @@ from google.appengine.api import memcache
 import logging
 from google.appengine.api import users
 import urllib
-import DbUtils
+import DbPattern
 
 
 def getCachedPairData(pair):
@@ -39,15 +39,15 @@ def constTemplateValues(userInfo,patternList,is_pv):
      'url' : userInfo[0],
      'url_text' : userInfo[1],
      'user' : userInfo[2],
-     'GBPUSD' : DbUtils.getUserPatternSettings(user.email(),'GBPUSD'),
-     'EURUSD' : DbUtils.getUserPatternSettings(user.email(),'EURUSD'),
-     'USDCHF' : DbUtils.getUserPatternSettings(user.email(),'USDCHF'),
-     'USDCAD' : DbUtils.getUserPatternSettings(user.email(),'USDCAD'),
-     'AUDUSD' : DbUtils.getUserPatternSettings(user.email(),'AUDUSD'),
-     'EURGBP' : DbUtils.getUserPatternSettings(user.email(),'EURGBP'),
-     'GBPJPY' : DbUtils.getUserPatternSettings(user.email(),'GBPJPY'),
-     'EURJPY' : DbUtils.getUserPatternSettings(user.email(),'EURJPY'),
-     'USDJPY' : DbUtils.getUserPatternSettings(user.email(),'USDJPY')
+     'GBPUSD' : DbPattern.getUserPatternSettings(user.email(),'GBPUSD'),
+     'EURUSD' : DbPattern.getUserPatternSettings(user.email(),'EURUSD'),
+     'USDCHF' : DbPattern.getUserPatternSettings(user.email(),'USDCHF'),
+     'USDCAD' : DbPattern.getUserPatternSettings(user.email(),'USDCAD'),
+     'AUDUSD' : DbPattern.getUserPatternSettings(user.email(),'AUDUSD'),
+     'EURGBP' : DbPattern.getUserPatternSettings(user.email(),'EURGBP'),
+     'GBPJPY' : DbPattern.getUserPatternSettings(user.email(),'GBPJPY'),
+     'EURJPY' : DbPattern.getUserPatternSettings(user.email(),'EURJPY'),
+     'USDJPY' : DbPattern.getUserPatternSettings(user.email(),'USDJPY')
      }
   else:
     template_values = {

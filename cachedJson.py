@@ -117,6 +117,7 @@ def sendEmailForPatternAlert():
        Dear Fx-Monitor User,
        """
        message.html = msg
+       logging.info(' Email has been send ...')
        message.send()
        msg = ''
       last_email = p.pair.email
@@ -128,6 +129,7 @@ def sendEmailForPatternAlert():
 def updatePatternAlerts(patternName):
    pattern = convPatternNameToDbName(patternName)
    # select all pattern records with this name
+   logging.info('Convert from [' +patternName + '] to [' + pattern + ']' )
    q_pattern = Pattern.query(Pattern.name == pattern)
    for p in q_pattern:
      p.sendEmail = 1
@@ -171,6 +173,7 @@ def chekEmailPatterns():
        l = s.split('T')
        if len(l) > 0 and (today.isoformat() == l[0]):
         if (today.isoformat() == l[0]): # only today patterns
+         logging.info(' We found matching pattern')
          updatePatternAlerts(pattern)
       i += 1
       

@@ -7,9 +7,10 @@ from google.appengine.api import memcache
 import logging
 from google.appengine.api import users
 import Fx_Utils
-import DbUtils
+import DbPattern
 import logging
-
+from datetime import date
+from time import gmtime, strftime
     
 # Class that handle url reqest (GET or POST)
 class MainHandler(webapp2.RequestHandler):
@@ -54,6 +55,8 @@ class MainHandler(webapp2.RequestHandler):
      self.response.out.write(template.render(path,template_values))  
    else:
     # get history table for all pairs patterns
+    today = date.today()
+    logging.info('Today is [' + strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()) + ']')
     hist_json = memcache.get('hist')
     while hist_json is None: # looping till get some data
      cachedJson.loadData()
@@ -75,26 +78,26 @@ class MainHandler(webapp2.RequestHandler):
      #logging.info('Return from checkbox [' + self.request.get('p') + '] Strong_Pearcing ')
      if len(self.request.get('Strong_Pearcing')) > 0:
       #logging.info('Calling saveUserSettings ......')
-      DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Strong_Pearcing',1)
+      DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Strong_Pearcing',1)
      else:
-       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Strong_Pearcing',0)
+       DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Strong_Pearcing',0)
     
     if self.request.get('Strong_Dark_cloud') != self.request.get('hStrong_Dark_cloud'):
      #logging.info('Return from checkbox [' + self.request.get('p') + '] Strong_Dark_cloud ')
      if len(self.request.get('Strong_Dark_cloud')) > 0:
      # logging.info('Calling saveUserSettings ......')
-      DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Strong_Dark_cloud',1)
+      DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Strong_Dark_cloud',1)
      else:
-       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Strong_Dark_cloud',0)
+       DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Strong_Dark_cloud',0)
        
     
      if self.request.get('Pearcing') != self.request.get('hPearcing'):
       #logging.info('Return from checkbox [' + self.request.get('p') + '] Pearcing ')
       if len(self.request.get('Pearcing')) > 0:
      # logging.info('Calling saveUserSettings ......')
-       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Pearcing',1)
+       DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Pearcing',1)
       else:
-       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Pearcing',0)
+       DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Pearcing',0)
     
      logging.debug('Dark_cloud [' + self.request.get('Dark_cloud') + '][' + self.request.get('hDark_cloud') + '][' + self.request.get('p') + ']')
    
@@ -103,27 +106,27 @@ class MainHandler(webapp2.RequestHandler):
      #logging.info('Return from checkbox [' + self.request.get('GBPUSD') + '] hCheckBox [' + self.request.get('hGBPUSD') + ']')
       if len(self.request.get('Dark_cloud')) > 0:
      # logging.info('Calling saveUserSettings ......')
-       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Dark_cloud',1)
+       DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Dark_cloud',1)
       else:
-       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Dark_cloud',0)
+       DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Dark_cloud',0)
     
     if self.request.get('Bulish_Endulfing') != self.request.get('hBulish_Endulfing'):
      # logging.info('Return from checkbox [' + self.request.get('p') + '] Bulish_Endulfing ')
      #logging.info('Return from checkbox [' + self.request.get('GBPUSD') + '] hCheckBox [' + self.request.get('hGBPUSD') + ']')
       if len(self.request.get('Bulish_Endulfing')) > 0:
      # logging.info('Calling saveUserSettings ......')
-       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Bulish_Endulfing',1)
+       DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Bulish_Endulfing',1)
       else:
-       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Bulish_Endulfing',0)
+       DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Bulish_Endulfing',0)
        
     if self.request.get('Berish_Endulfing') != self.request.get('hBerish_Endulfing'):
     #logging.info('Return from checkbox [' + self.request.get('p') + '] Berish_Endulfing ')
      #logging.info('Return from checkbox [' + self.request.get('GBPUSD') + '] hCheckBox [' + self.request.get('hGBPUSD') + ']')
       if len(self.request.get('Berish_Endulfing')) > 0:
      # logging.info('Calling saveUserSettings ......')
-       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Berish_Endulfing',1)
+       DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Berish_Endulfing',1)
       else:
-       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Berish_Endulfing',0)
+       DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Berish_Endulfing',0)
        
     
     if self.request.get('Bulish_Harami') != self.request.get('hBulish_Harami'):
@@ -131,10 +134,10 @@ class MainHandler(webapp2.RequestHandler):
      #logging.info('Return from checkbox [' + self.request.get('GBPUSD') + '] hCheckBox [' + self.request.get('hGBPUSD') + ']')
       if len(self.request.get('Bulish_Harami')) > 0:
        #logging.info('Calling savePaternSettings ...... Selected ...')
-       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Bulish_Harami',1)
+       DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Bulish_Harami',1)
       else:
        #logging.info('Calling savePaternSettings ...... NOT Selected ...')  
-       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Bulish_Harami',0)
+       DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Bulish_Harami',0)
        
      
     if self.request.get('Berish_Harami') != self.request.get('hBerish_Harami'):
@@ -142,9 +145,9 @@ class MainHandler(webapp2.RequestHandler):
      #logging.info('Return from checkbox [' + self.request.get('GBPUSD') + '] hCheckBox [' + self.request.get('hGBPUSD') + ']')
       if len(self.request.get('Berish_Harami')) > 0:
      # logging.info('Calling saveUserSettings ......')
-       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Berish_Harami',1)
+       DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Berish_Harami',1)
       else:
-       DbUtils.savePaternSettings(user.email(),self.request.get('p'),'Berish_Harami',0)
+       DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Berish_Harami',0)
        
     self.redirect(self.request.uri)
 
