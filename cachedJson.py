@@ -247,6 +247,15 @@ def clearData():
   client.delete('h_cad')
   client.delete('h_aud')
   client.delete('pv')
+  client.delete('pv_gbpusd')
+  client.delete('pv_eurusd')
+  client.delete('pv_usdchf')
+  client.delete('pv_usdcad')
+  client.delete('pv_audusd')
+  client.delete('pv_usdjpy')
+  client.delete('pv_eurgbp')
+  client.delete('pv_gbpjpy')
+  client.delete('pv_eurjpy')
 
 #- description: Check for SR Level broke and send email notification
 #  url: /?c=1
@@ -320,7 +329,7 @@ def loadData():
   sr_lines = client.get('sr_lines')
   
   if pv_gbp is None or len(pv_gbp) == 0:
-    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=gbpusd&limit=10"
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=gbpusd&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
     logging.debug('before save to memcache')
@@ -330,7 +339,7 @@ def loadData():
       memcache.add(key='pv_gbpusd',value=result.content,time=3600)
   
   if pv_eur is None or len(pv_eur) == 0:
-    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=eurusd&limit=10"
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=eurusd&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
     logging.debug('before save to memcache')
@@ -340,7 +349,7 @@ def loadData():
       memcache.add(key='pv_eurusd',value=result.content,time=3600)
   
   if pv_chf is None or len(pv_chf) == 0:
-    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=usdchf&limit=10"
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=usdchf&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
     logging.debug('before save to memcache')
@@ -350,7 +359,7 @@ def loadData():
       memcache.add(key='pv_usdchf',value=result.content,time=3600)
   
   if pv_cad is None or len(pv_cad) == 0:
-    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=usdcad&limit=10"
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=usdcad&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
     logging.debug('before save to memcache')
@@ -360,7 +369,7 @@ def loadData():
       memcache.add(key='pv_usdcad',value=result.content,time=3600)
   
   if pv_aud is None or len(pv_aud) == 0:
-    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=audusd&limit=10"
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=audusd&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
     logging.debug('before save to memcache')
@@ -370,7 +379,7 @@ def loadData():
       memcache.add(key='pv_audusd',value=result.content,time=3600)
   
   if pv_jpy is None or len(pv_jpy) == 0:
-    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=usdjpy&limit=10"
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=usdjpy&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
     logging.debug('before save to memcache')
@@ -380,7 +389,7 @@ def loadData():
       memcache.add(key='pv_usdjpy',value=result.content,time=3600)
   
   if pv_eurgbp is None or len(pv_eurgbp) == 0:
-    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=eurgbp&limit=10"
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=eurgbp&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
     logging.debug('before save to memcache')
@@ -391,7 +400,7 @@ def loadData():
   
   
   if pv_gbpjpy is None or len(pv_gbpjpy) == 0:
-    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=gbpjpy&limit=10"
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=gbpjpy&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
     logging.debug('before save to memcache')
@@ -402,7 +411,7 @@ def loadData():
   
   
   if pv_eurjpy is None or len(pv_eurjpy) == 0:
-    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=eurjpy&limit=10"
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=eurjpy&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
     logging.debug('before save to memcache')
