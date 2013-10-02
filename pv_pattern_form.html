@@ -1,0 +1,43 @@
+<form action={{action}} method="post">
+<table>
+  <tr>
+    <td>Pattern</td>
+    <td>
+    {% if update %}
+     {{patten_name}}
+      <input type="hidden" name="hidden_pttern" value="{{patten_name}}">
+    {% else %}
+     <input type="text" name="txt_pttern">
+    {% endif %}
+    </td>
+  </tr>
+  <tr>
+    <td>Second Day</td>
+    <td>
+      <select>
+        <option value="d2_SR">Pivot Sell Range</option>
+        <option value="d2_BR">Pivot Buy Range</option>
+        <option value="d2_ST">Pivot Sell Trend</option>
+        <option value="d2_BT">Pivot Buy Trend</option>
+      </select>
+    </td>
+  </tr>
+  <tr> 
+   <td>Third Day</td>
+    <td>
+       <select>
+        <option value="d3_SR">Pivot Sell Range</option>
+        <option value="d3_BR">Pivot Buy Range</option>
+        <option value="d3_ST">Pivot Sell Trend</option>
+        <option value="d3_BT">Pivot Buy Trend</option>
+      </select>
+    </td>
+   </tr>
+   <tr>
+    <td></td>
+    <td>
+      <input type="submit" value="Submit">
+    </td>
+   </tr>
+</table>
+</form>

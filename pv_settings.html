@@ -1,0 +1,11 @@
+{% if pv_table %}
+ <table border=1  >
+  {% for elem in pv_table %}
+   <tr>
+    {% for e in elem %}
+    <td > {{ e }} </td>
+    {% endfor %}  
+    </tr>
+      {% endfor %}  
+          </table>
+          {% endif %}
