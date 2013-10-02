@@ -4,8 +4,9 @@
    <tr>
     {% for e in elem %}
     <td > {{ e }} </td>
-    {% endfor %}  
+    {% endfor %} 
+    <td><a href = "{{edit_link}}">{{edit_txt}}</a> &sp; <a href = "{{del_link}}">{{del_txt}}</a></td>
     </tr>
-      {% endfor %}  
-          </table>
-          {% endif %}
+    {% endfor %}  
+    </table>
+    {% endif %}
