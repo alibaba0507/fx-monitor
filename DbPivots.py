@@ -30,7 +30,7 @@ def getPvSettings(u_email,pair):
      
 def savePvPattern(u_email,pair,pattern,child_1,child_2,delete):
  q = Pivots.query(Pivots.pair == pair,Pivots.email == u_email,Pivots.child == pattern)
- p = Pivots(Pivots.pair = pair,Pivots.email = u_email,Pivots.child = pattern)
+ p = Pivots(pair = pair,email = u_email,child = pattern)
  if q.count() > 0:
    p = q.get()
    if delete:
