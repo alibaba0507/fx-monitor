@@ -335,70 +335,70 @@ def loadData():
     url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=gbpusd&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
-    logging.debug('before save to memcache')
+    #logging.debug('before save to memcache')
       #self.redirect(url_link)
     if result.status_code == 200:
-      logging.debug('save to memcache')
+      #logging.debug('save to memcache')
       memcache.add(key='pv_gbpusd',value=result.content,time=3600)
   
   if pv_eur is None or len(pv_eur) == 0:
     url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=eurusd&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
-    logging.debug('before save to memcache')
+    #logging.debug('before save to memcache')
       #self.redirect(url_link)
     if result.status_code == 200:
-      logging.debug('save to memcache')
+      #logging.debug('save to memcache')
       memcache.add(key='pv_eurusd',value=result.content,time=3600)
   
   if pv_chf is None or len(pv_chf) == 0:
     url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=usdchf&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
-    logging.debug('before save to memcache')
+    #logging.debug('before save to memcache')
       #self.redirect(url_link)
     if result.status_code == 200:
-      logging.debug('save to memcache')
+      #logging.debug('save to memcache')
       memcache.add(key='pv_usdchf',value=result.content,time=3600)
   
   if pv_cad is None or len(pv_cad) == 0:
     url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=usdcad&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
-    logging.debug('before save to memcache')
+    #logging.debug('before save to memcache')
       #self.redirect(url_link)
     if result.status_code == 200:
-      logging.debug('save to memcache')
+      #logging.debug('save to memcache')
       memcache.add(key='pv_usdcad',value=result.content,time=3600)
   
   if pv_aud is None or len(pv_aud) == 0:
     url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=audusd&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
-    logging.debug('before save to memcache')
+    #logging.debug('before save to memcache')
       #self.redirect(url_link)
     if result.status_code == 200:
-      logging.debug('save to memcache')
+      #logging.debug('save to memcache')
       memcache.add(key='pv_audusd',value=result.content,time=3600)
   
   if pv_jpy is None or len(pv_jpy) == 0:
     url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=usdjpy&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
-    logging.debug('before save to memcache')
+    #logging.debug('before save to memcache')
       #self.redirect(url_link)
     if result.status_code == 200:
-      logging.debug('save to memcache')
+      #logging.debug('save to memcache')
       memcache.add(key='pv_usdjpy',value=result.content,time=3600)
   
   if pv_eurgbp is None or len(pv_eurgbp) == 0:
     url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=eurgbp&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
-    logging.debug('before save to memcache')
+    #logging.debug('before save to memcache')
       #self.redirect(url_link)
     if result.status_code == 200:
-      logging.debug('save to memcache')
+      #logging.debug('save to memcache')
       memcache.add(key='pv_eurgbp',value=result.content,time=3600)
   
   
@@ -406,10 +406,10 @@ def loadData():
     url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=gbpjpy&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
-    logging.debug('before save to memcache')
+    #logging.debug('before save to memcache')
       #self.redirect(url_link)
     if result.status_code == 200:
-      logging.debug('save to memcache')
+      #logging.debug('save to memcache')
       memcache.add(key='pv_gbpjpy',value=result.content,time=3600)
   
   
@@ -417,10 +417,10 @@ def loadData():
     url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1&p=eurjpy&limit=30"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
-    logging.debug('before save to memcache')
+    #logging.debug('before save to memcache')
       #self.redirect(url_link)
     if result.status_code == 200:
-      logging.debug('save to memcache')
+      #logging.debug('save to memcache')
       memcache.add(key='pv_eurjpy',value=result.content,time=3600)
   
   if sr_lines is None or len(sr_lines) == 0:
@@ -433,10 +433,10 @@ def loadData():
     url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1"
     urlfetch.set_default_fetch_deadline(45)
     result = urlfetch.fetch(url_link)
-    logging.debug('before save to memcache')
+    #logging.debug('before save to memcache')
       #self.redirect(url_link)
     if result.status_code == 200:
-      logging.debug('save to memcache')
+      #logging.debug('save to memcache')
       memcache.add(key='pv',value=result.content,time=3600)
 
   if hist_json is None or len(hist_json) == 0:
