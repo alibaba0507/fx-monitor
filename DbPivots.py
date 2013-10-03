@@ -14,6 +14,12 @@ class Pivots(ndb.Model):
   sendEmail = ndb.IntegerProperty(default = 0)
   
 
+def translatePattern(shortName):
+  if shortName == 'SR': return 'Pivot Sell Range'
+  elif shortName == 'BR': return 'Pivot Buy Range'
+  elif shortName == 'ST': return 'Pivot Sell Trend'
+  elif shortName == 'BT': return 'Pivot Buy Trend'
+  else: return None
 # will get the settings from memcache
 # if not exist will created from the ndb
 # @retrun json object of the Pivots objects

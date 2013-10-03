@@ -8,9 +8,11 @@ import logging
 from google.appengine.api import users
 import Fx_Utils
 import DbPattern
+import DbPivots
 import logging
 from datetime import date
 from time import gmtime, strftime
+
     
 # Class that handle url reqest (GET or POST)
 class MainHandler(webapp2.RequestHandler):
@@ -83,7 +85,14 @@ class MainHandler(webapp2.RequestHandler):
   def post(self):
     user = users.get_current_user()
     l = []
-    
+    if self.request.get('add'):
+      pair = self.request.get('add')
+      d1 = DbPivots.translatePattern(self.request.get('d1'))
+      d2 = DbPivots.translatePattern(self.request.get('d2'))
+      d3 = DbPivots.translatePattern(self.request.get('d2'))
+      
+      DbPivots.savePvPattern(user.email,pair,d1,d2,d3,None)
+      #self.redirect(self.request.uri)
     #logging.debug('Strong_Pearcing [' + self.request.get('Strong_Pearcing') + '][' + self.request.get('hStrong_Pearcing') + '][' + self.request.get('p') + ']')
     if self.request.get('Strong_Pearcing') != self.request.get('hStrong_Pearcing'):
      #logging.info('Return from checkbox [' + self.request.get('p') + '] Strong_Pearcing ')
