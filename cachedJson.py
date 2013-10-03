@@ -160,7 +160,7 @@ def chekEmailPatterns():
     cnt += 1
     #self.response.write("<tr>")
     i = 0
-    #logging.info(' Start check Email patterns .... ')
+    logging.info(' Start check Email patterns .... ')
     pair = ''
     pattern = ''
     for e in elem:

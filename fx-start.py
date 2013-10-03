@@ -24,6 +24,17 @@ class MainHandler(webapp2.RequestHandler):
    #invoke by cron job
    if self.request.get('cron'):
       cachedJson.loadData()
+   elif self.request.get('sendEmailForPatternAlert'):
+     cachedJson.sendEmailForPatternAlert() #cron to send emails to user
+   elif self.request.get('checkPatterns'):
+     cachedJson.chekEmailPatterns() # cron run once a day and record patterns
+   elif self.request.get('pv_settings'):
+     if userInfo:
+      template_values = Fx_Utils.constTempPvValues(userInfo)
+      path = os.path.join(os.path.dirname(__file__), 'index_pv.html')
+      self.response.out.write(template.render(path,template_values))  
+     else:
+       self.response.out.write('<p> Access denied ... <br/>')
    elif self.request.get('pair'):
      pair = self.request.get('pair')
      hist_json = Fx_Utils.getCachedPairData(pair)

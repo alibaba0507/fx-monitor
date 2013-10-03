@@ -24,7 +24,22 @@ def getCachedPairData(pair):
   elif pair == 'gbpjpy':
     return memcache.get('h_gbpjpy')
     
-    
+def constTempPvValues(userInfo):
+  user = users.get_current_user()
+  template_values = {
+     'url' : userInfo[0],
+     'url_text' : userInfo[1],
+     'user' : userInfo[2],
+     'GBPUSD' : DbPivots.getPvSettings(user.email(),'GBPUSD'),
+     'EURUSD' : DbPivots.getPvSettings(user.email(),'EURUSD'),
+     'USDCHF' : DbPivots.getPvSettings(user.email(),'USDCHF'),
+     'USDCAD' : DbPivots.getPvSettings(user.email(),'USDCAD'),
+     'AUDUSD' : DbPivots.getPvSettings(user.email(),'AUDUSD'),
+     'EURGBP' : DbPivots.getPvSettings(user.email(),'EURGBP'),
+     'GBPJPY' : DbPivots.getPvSettings(user.email(),'GBPJPY'),
+     'EURJPY' : DbPivots.getPvSettings(user.email(),'EURJPY'),
+     'USDJPY' : DbPivots.getPvSettings(user.email(),'USDJPY')
+     }
 def constTemplateValues(userInfo,patternList,is_pv):
   user = users.get_current_user()
   #logging.info(' IS PV Call ... [' + is_pv + ']')
