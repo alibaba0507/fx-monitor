@@ -4,7 +4,7 @@ import logging
 from google.appengine.api import users
 import urllib
 import DbPattern
-
+import DbPivots
 
 def getCachedPairData(pair):
   if pair == 'gbpusd':
