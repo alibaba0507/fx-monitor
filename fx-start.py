@@ -90,7 +90,7 @@ class MainHandler(webapp2.RequestHandler):
       pair = self.request.get('add')
       d1 = DbPivots.translatePattern(self.request.get('d1'))
       d2 = DbPivots.translatePattern(self.request.get('d2'))
-      d3 = DbPivots.translatePattern(self.request.get('d2'))
+      d3 = DbPivots.translatePattern(self.request.get('d3'))
       
       DbPivots.savePvPattern(user.email(),pair,d1,d2,d3,None)
       #self.redirect(self.request.uri)
