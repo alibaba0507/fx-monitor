@@ -39,7 +39,7 @@ def getPvSettings(u_email,pair):
      
 def savePvPattern(u_email,pair,pattern,child_1,child_2,delete):
  client = memcache.Client()
- logging.debug('Email[' + u_email + '] pair ['+ pair + '] pattern [' + pattern + '] child ['+ child_1 + '] child 2['+ child_2 + ']')
+ #logging.debug('Email[' + u_email + '] pair ['+ pair + '] pattern [' + pattern + '] child ['+ child_1 + '] child 2['+ child_2 + ']')
  q = Pivots.query(Pivots.pair == pair,Pivots.email == u_email,Pivots.child == pattern)
  p = Pivots(pair = pair,email = u_email,child = pattern)
  if q.count() > 0:
