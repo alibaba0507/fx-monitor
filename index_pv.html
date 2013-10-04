@@ -231,8 +231,8 @@
            {% if EURUSD %}
              <table border=1>
                 <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
-                {% for elem in GBPUSD %}
-                 <form action = '/?del=gbpusd' method="post">
+                {% for elem in EURUSD %}
+                 <form action = '/?del=eurusd' method="post">
                  <tr>
                   <input type= "hidden" name="pattern" value="{{elem.child}}">
                   <td>{{elem.child}}</td>
@@ -295,8 +295,8 @@
            {% if USDCHF %}
             <table border=1>
                 <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
-                {% for elem in GBPUSD %}
-                 <form action = '/?del=gbpusd' method="post">
+                {% for elem in USDCHF %}
+                 <form action = '/?del=usdchf' method="post">
                  <tr>
                   <input type= "hidden" name="pattern" value="{{elem.child}}">
                   <td>{{elem.child}}</td>
@@ -359,8 +359,8 @@
               {% if USDCAD %}
               <table border=1>
                 <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
-                {% for elem in GBPUSD %}
-                 <form action = '/?del=gbpusd' method="post">
+                {% for elem in USDCAD %}
+                 <form action = '/?del=usdcad' method="post">
                  <tr>
                   <input type= "hidden" name="pattern" value="{{elem.child}}">
                   <td>{{elem.child}}</td>
@@ -423,8 +423,8 @@
              {% if AUDUSD %}
               <table border=1>
                 <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
-                {% for elem in GBPUSD %}
-                 <form action = '/?del=gbpusd' method="post">
+                {% for elem in AUDUSD %}
+                 <form action = '/?del=audusd' method="post">
                  <tr>
                   <input type= "hidden" name="pattern" value="{{elem.child}}">
                   <td>{{elem.child}}</td>
@@ -487,8 +487,8 @@
             {% if EURGBP %}
              <table border=1>
                 <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
-                {% for elem in GBPUSD %}
-                 <form action = '/?del=gbpusd' method="post">
+                {% for elem in EURGBP %}
+                 <form action = '/?del=eurgbp' method="post">
                  <tr>
                   <input type= "hidden" name="pattern" value="{{elem.child}}">
                   <td>{{elem.child}}</td>
@@ -551,8 +551,8 @@
              {% if GBPJPY %}
              <table border=1>
                 <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
-                {% for elem in GBPUSD %}
-                 <form action = '/?del=gbpusd' method="post">
+                {% for elem in GBPJPY %}
+                 <form action = '/?del=gbpjpy' method="post">
                  <tr>
                   <input type= "hidden" name="pattern" value="{{elem.child}}">
                   <td>{{elem.child}}</td>
@@ -615,8 +615,8 @@
             {% if EURJPY %}
              <table border=1>
                 <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
-                {% for elem in GBPUSD %}
-                 <form action = '/?del=gbpusd' method="post">
+                {% for elem in EURJPY %}
+                 <form action = '/?del=eurjpy' method="post">
                  <tr>
                   <input type= "hidden" name="pattern" value="{{elem.child}}">
                   <td>{{elem.child}}</td>
@@ -679,8 +679,8 @@
             {% if USDJPY %}
               <table border=1>
                 <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
-                {% for elem in GBPUSD %}
-                 <form action = '/?del=gbpusd' method="post">
+                {% for elem in USDJPY %}
+                 <form action = '/?del=usdjpy' method="post">
                  <tr>
                   <input type= "hidden" name="pattern" value="{{elem.child}}">
                   <td>{{elem.child}}</td>
@@ -691,8 +691,6 @@
                  </td>
                  </tr>
                  </form>
-                {% endfor %}
-              </table>
                 {% endfor %}
               </table>
             {% endif %}
