@@ -40,6 +40,7 @@ def constTempPvValues(userInfo):
      'EURJPY' : DbPivots.getPvSettings(user.email(),'EURJPY'),
      'USDJPY' : DbPivots.getPvSettings(user.email(),'USDJPY')
      }
+  return template_values
 def constTemplateValues(userInfo,patternList,is_pv):
   user = users.get_current_user()
   #logging.info(' IS PV Call ... [' + is_pv + ']')
