@@ -165,17 +165,19 @@
               </table>
               </form>
             {% if GBPUSD %}
-              <table>
+              <table border=1>
+                <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
                 {% for elem in GBPUSD %}
                  <form action = '/?del=gbpusd' method="post">
                  <tr>
-                  <input type= "hidden" name="pattern" value="{{e.child}}">
-                  <td>{{e.child}}</td>
-                  <td>{{e.child_1}}</td>
-                  <td>{{e.child_2}}</td>
+                  <input type= "hidden" name="pattern" value="{{elem.child}}">
+                  <td>{{elem.child}}</td>
+                  <td>{{elem.child_1}}</td>
+                  <td>{{elem.child_2}}</td>
                   <td>
                  <input type="submit" value="Delete">
                  </td>
+                 </tr>
                  </form>
                 {% endfor %}
               </table>
@@ -227,18 +229,19 @@
               </table>
               </form>
            {% if EURUSD %}
-              <table>
-                {% for elem in EURUSD %}
-                <form action = '/?del=eurusd' method="post">
+             <table border=1>
+                <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
+                {% for elem in GBPUSD %}
+                 <form action = '/?del=gbpusd' method="post">
                  <tr>
-                   {% for e in elem %}
-                    {% if forloop.first %}
-                     <input type= "hidden" name="pattern" value="{{e}}">
-                    {% endif %}
-                    <td>{{e}}</td>
-                   {% endfor %}
-                 </tr>
+                  <input type= "hidden" name="pattern" value="{{elem.child}}">
+                  <td>{{elem.child}}</td>
+                  <td>{{elem.child_1}}</td>
+                  <td>{{elem.child_2}}</td>
+                  <td>
                  <input type="submit" value="Delete">
+                 </td>
+                 </tr>
                  </form>
                 {% endfor %}
               </table>
@@ -290,18 +293,19 @@
               </table>
               </form>
            {% if USDCHF %}
-              <table>
-                {% for elem in USDCHF %}
-                <form action = '/?del=usdchf' method="post">
+            <table border=1>
+                <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
+                {% for elem in GBPUSD %}
+                 <form action = '/?del=gbpusd' method="post">
                  <tr>
-                   {% for e in elem %}
-                    {% if forloop.first %}
-                     <input type= "hidden" name="pattern" value="{{e}}">
-                    {% endif %}
-                    <td>{{e}}</td>
-                   {% endfor %}
-                 </tr>
+                  <input type= "hidden" name="pattern" value="{{elem.child}}">
+                  <td>{{elem.child}}</td>
+                  <td>{{elem.child_1}}</td>
+                  <td>{{elem.child_2}}</td>
+                  <td>
                  <input type="submit" value="Delete">
+                 </td>
+                 </tr>
                  </form>
                 {% endfor %}
               </table>
@@ -353,18 +357,19 @@
               </table>
               </form>
               {% if USDCAD %}
-              <table>
-                {% for elem in USDCAD %}
-                 <form action = '/?del=usdcad' method="post">
+              <table border=1>
+                <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
+                {% for elem in GBPUSD %}
+                 <form action = '/?del=gbpusd' method="post">
                  <tr>
-                   {% for e in elem %}
-                    {% if forloop.first %}
-                     <input type= "hidden" name="pattern" value="{{e}}">
-                    {% endif %}
-                    <td>{{e}}</td>
-                   {% endfor %}
-                 </tr>
+                  <input type= "hidden" name="pattern" value="{{elem.child}}">
+                  <td>{{elem.child}}</td>
+                  <td>{{elem.child_1}}</td>
+                  <td>{{elem.child_2}}</td>
+                  <td>
                  <input type="submit" value="Delete">
+                 </td>
+                 </tr>
                  </form>
                 {% endfor %}
               </table>
@@ -416,18 +421,19 @@
               </table>
               </form>
              {% if AUDUSD %}
-              <table>
-                {% for elem in AUDUSD %}
-                 <form action = '/?del=audusd' method="post">
+              <table border=1>
+                <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
+                {% for elem in GBPUSD %}
+                 <form action = '/?del=gbpusd' method="post">
                  <tr>
-                   {% for e in elem %}
-                    {% if forloop.first %}
-                     <input type= "hidden" name="pattern" value="{{e}}">
-                    {% endif %}
-                    <td>{{e}}</td>
-                   {% endfor %}
-                 </tr>
+                  <input type= "hidden" name="pattern" value="{{elem.child}}">
+                  <td>{{elem.child}}</td>
+                  <td>{{elem.child_1}}</td>
+                  <td>{{elem.child_2}}</td>
+                  <td>
                  <input type="submit" value="Delete">
+                 </td>
+                 </tr>
                  </form>
                 {% endfor %}
               </table>
@@ -479,18 +485,19 @@
               </table>
               </form>
             {% if EURGBP %}
-              <table>
-                {% for elem in EURGBP %}
-                <form action = '/?del=eurgbp' method="post">
+             <table border=1>
+                <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
+                {% for elem in GBPUSD %}
+                 <form action = '/?del=gbpusd' method="post">
                  <tr>
-                   {% for e in elem %}
-                    {% if forloop.first %}
-                     <input type= "hidden" name="pattern" value="{{e}}">
-                    {% endif %}
-                    <td>{{e}}</td>
-                   {% endfor %}
-                 </tr>
+                  <input type= "hidden" name="pattern" value="{{elem.child}}">
+                  <td>{{elem.child}}</td>
+                  <td>{{elem.child_1}}</td>
+                  <td>{{elem.child_2}}</td>
+                  <td>
                  <input type="submit" value="Delete">
+                 </td>
+                 </tr>
                  </form>
                 {% endfor %}
               </table>
@@ -542,18 +549,19 @@
               </table>
               </form>
              {% if GBPJPY %}
-              <table>
-                {% for elem in GBPJPY %}
-                <form action = '/?del=gbpjpy' method="post">
+             <table border=1>
+                <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
+                {% for elem in GBPUSD %}
+                 <form action = '/?del=gbpusd' method="post">
                  <tr>
-                   {% for e in elem %}
-                    {% if forloop.first %}
-                     <input type= "hidden" name="pattern" value="{{e}}">
-                    {% endif %}
-                    <td>{{e}}</td>
-                   {% endfor %}
-                 </tr>
+                  <input type= "hidden" name="pattern" value="{{elem.child}}">
+                  <td>{{elem.child}}</td>
+                  <td>{{elem.child_1}}</td>
+                  <td>{{elem.child_2}}</td>
+                  <td>
                  <input type="submit" value="Delete">
+                 </td>
+                 </tr>
                  </form>
                 {% endfor %}
               </table>
@@ -605,18 +613,19 @@
               </table>
               </form>
             {% if EURJPY %}
-              <table>
-                {% for elem in EURJPY %}
-                 <form action = '/?del=eurjpy' method="post">
+             <table border=1>
+                <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
+                {% for elem in GBPUSD %}
+                 <form action = '/?del=gbpusd' method="post">
                  <tr>
-                   {% for e in elem %}
-                    {% if forloop.first %}
-                     <input type= "hidden" name="pattern" value="{{e}}">
-                    {% endif %}
-                    <td>{{e}}</td>
-                   {% endfor %}
-                 </tr>
+                  <input type= "hidden" name="pattern" value="{{elem.child}}">
+                  <td>{{elem.child}}</td>
+                  <td>{{elem.child_1}}</td>
+                  <td>{{elem.child_2}}</td>
+                  <td>
                  <input type="submit" value="Delete">
+                 </td>
+                 </tr>
                  </form>
                 {% endfor %}
               </table>
@@ -668,19 +677,22 @@
               </table>
               </form>
             {% if USDJPY %}
-              <table>
-                {% for elem in USDJPY %}
-                 <form action = '/?del=usdjpy' method="post">
+              <table border=1>
+                <tr><td>Day 1</td><td>Day 2</td><td>Day 3</td><td>Action</td></tr>
+                {% for elem in GBPUSD %}
+                 <form action = '/?del=gbpusd' method="post">
                  <tr>
-                   {% for e in elem %}
-                    {% if forloop.first %}
-                     <input type= "hidden" name="pattern" value="{{e}}">
-                    {% endif %}
-                    <td>{{e}}</td>
-                   {% endfor %}
-                 </tr>
+                  <input type= "hidden" name="pattern" value="{{elem.child}}">
+                  <td>{{elem.child}}</td>
+                  <td>{{elem.child_1}}</td>
+                  <td>{{elem.child_2}}</td>
+                  <td>
                  <input type="submit" value="Delete">
+                 </td>
+                 </tr>
                  </form>
+                {% endfor %}
+              </table>
                 {% endfor %}
               </table>
             {% endif %}
