@@ -175,7 +175,7 @@ class MainHandler(webapp2.RequestHandler):
       else:
        DbPattern.savePaternSettings(user.email(),self.request.get('p'),'Berish_Harami',0)
        
-    self.redirect(self.request.uri)
+    self.redirect(link)
 
 
 
