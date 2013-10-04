@@ -38,6 +38,7 @@ def getPvSettings(u_email,pair):
     getPvSettings(u_email,pair) #call again  
      
 def savePvPattern(u_email,pair,pattern,child_1,child_2,delete):
+ logging.debug('Email[' + u_email + '] pair ['+ pair + '] pattern [' + pattern + '] child ['+ child_1 + '] child 2['+ child_2 + ']')
  q = Pivots.query(Pivots.pair == pair,Pivots.email == u_email,Pivots.child == pattern)
  p = Pivots(pair = pair,email = u_email,child = pattern)
  if q.count() > 0:

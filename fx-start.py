@@ -92,7 +92,7 @@ class MainHandler(webapp2.RequestHandler):
       d2 = DbPivots.translatePattern(self.request.get('d2'))
       d3 = DbPivots.translatePattern(self.request.get('d2'))
       
-      DbPivots.savePvPattern(user.email,pair,d1,d2,d3,None)
+      DbPivots.savePvPattern(user.email(),pair,d1,d2,d3,None)
       #self.redirect(self.request.uri)
     #logging.debug('Strong_Pearcing [' + self.request.get('Strong_Pearcing') + '][' + self.request.get('hStrong_Pearcing') + '][' + self.request.get('p') + ']')
     if self.request.get('Strong_Pearcing') != self.request.get('hStrong_Pearcing'):
