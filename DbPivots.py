@@ -31,9 +31,9 @@ def getPvSettings(u_email,pair):
   if ret_pattern and len(ret_pattern) > 0: return json.load(ret_pattern)
   else:
    #store as json string
-   saved = p.to_dict() for p in Pivots.query(
+   saved = json.dumps([p.to_dict() for p in Pivots.query(Pivots.pair == pair,Pivots.email == u_email).fetch()])
    logging.info('Saved value [' + )
-   if saved and len(saved) > 0 and saved is not '[]':
+   if saved and len(saved) > 0 and saved :
     client.set(key='pvsettings[' + pair + '][' + u_email + ']',value=saved,time=3600)
     getPvSettings(u_email,pair) #call again  
      
