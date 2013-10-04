@@ -28,7 +28,7 @@ def getPvSettings(u_email,pair):
   pair = pair.lower()
   ret_pattern = client.get(key='pvsettings[' + pair + '][' + u_email + ']')
   logging.info(' Get Pivot Patterns Settings [' + pair  +'][' + str(ret_pattern) + ']')
-  if ret_pattern and len(ret_pattern) > 0: return json.load(ret_pattern)
+  if ret_pattern is not None and len(ret_pattern) > 0: return json.loads(ret_pattern)
   else:
    #store as json string
    saved = json.dumps([p.to_dict() for p in Pivots.query(Pivots.pair == pair,Pivots.email == u_email).fetch()])
@@ -38,6 +38,7 @@ def getPvSettings(u_email,pair):
     getPvSettings(u_email,pair) #call again  
      
 def savePvPattern(u_email,pair,pattern,child_1,child_2,delete):
+ client = memcache.Client()
  logging.debug('Email[' + u_email + '] pair ['+ pair + '] pattern [' + pattern + '] child ['+ child_1 + '] child 2['+ child_2 + ']')
  q = Pivots.query(Pivots.pair == pair,Pivots.email == u_email,Pivots.child == pattern)
  p = Pivots(pair = pair,email = u_email,child = pattern)

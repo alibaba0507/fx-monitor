@@ -169,14 +169,13 @@
                 {% for elem in GBPUSD %}
                  <form action = '/?del=gbpusd' method="post">
                  <tr>
-                   {% for e in elem %}
-                    {% if forloop.first %}
-                     <input type= "hidden" name="pattern" value="{{e}}">
-                    {% endif %}
-                    <td>{{e}}</td>
-                   {% endfor %}
-                 </tr>
+                  <input type= "hidden" name="pattern" value="{{e.child}}">
+                  <td>{{e.child}}</td>
+                  <td>{{e.child_1}}</td>
+                  <td>{{e.child_2}}</td>
+                  <td>
                  <input type="submit" value="Delete">
+                 </td>
                  </form>
                 {% endfor %}
               </table>
