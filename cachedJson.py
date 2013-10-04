@@ -171,6 +171,7 @@ def chekEmailPatterns():
         pattern = s
       if i == 2: # fromat time
        l = s.split('T')
+       loggin.debug('Pattern date [' + l[0] + '] current day [' +  today.isoformat() + ']')
        if len(l) > 0 and (today.isoformat() == l[0]):
         if (today.isoformat() == l[0]): # only today patterns
          logging.info(' We found matching pattern')
