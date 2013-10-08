@@ -9,6 +9,7 @@ from google.appengine.api import users
 import Fx_Utils
 import DbPattern
 import DbPivots
+import DbHistPatterns
 import logging
 from datetime import date
 from time import gmtime, strftime
@@ -87,6 +88,18 @@ class MainHandler(webapp2.RequestHandler):
     user = users.get_current_user()
     l = []
     link = self.request.uri
+    if self.request.get('post_pattern'):
+      # we have a pattern here
+      # this is JSON string object
+      data = self.request.get('data')
+      #resultJSON = json.loads(data)
+      DbHistPatterns.save(data,'pt')
+    if self.request.get('post_pv'):
+      # we have a pattern here
+      # this is JSON string object
+      data = self.request.get('data')
+      #resultJSON = json.loads(data)
+      DbHistPatterns.save(data,'pv')
     if self.request.get('add'):
       pair = self.request.get('add')
       d1 = DbPivots.translatePattern(self.request.get('d1'))
