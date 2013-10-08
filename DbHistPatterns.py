@@ -29,7 +29,7 @@ def get(type):
   pt = None
   if type == 'pt': # patterns
    pt = client.get(key='hist')
-  else
+  else:
    pt = client.get(key='pv_hist')
   
   if pt is None or len(pt) == 0:
