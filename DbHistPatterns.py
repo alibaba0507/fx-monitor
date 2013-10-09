@@ -14,6 +14,7 @@ class Hist(ndb.Model):
 def save(data,type):
   #data = str(urllib.unquote(data).decode("utf-8"))
   data = str(data)
+  logging.info(' Data length [' + len(data)  +']')
   #logging.debug('Data ..... [' + data  + ']')
   qry = Hist.query(Hist.type == type)
   if qry.count() > 0:
