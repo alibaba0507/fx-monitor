@@ -27,12 +27,14 @@ def getPvSettings(u_email,pair):
   client = memcache.Client()
   pair = pair.lower()
   ret_pattern = client.get(key='pvsettings[' + pair + '][' + u_email + ']')
-  logging.info(' Get Pivot Patterns Settings [' + pair  +'][' + str(ret_pattern) + ']')
-  if ret_pattern is not None and len(ret_pattern) > 0: return json.loads(ret_pattern)
+  #logging.info(' Get Pivot Patterns Settings [' + pair  +'][' + str(ret_pattern) + ']')
+  if ret_pattern is not None and len(ret_pattern) > 0: 
+    logging.info('Read MEMCASHE ......')
+    return json.loads(ret_pattern)
   else:
    #store as json string
    saved = json.dumps([p.to_dict() for p in Pivots.query(Pivots.pair == pair,Pivots.email == u_email).fetch()])
-   logging.info('Saved value ' )
+   logging.info('Read DBase ......')
    if saved and len(saved) > 2:
     client.set(key='pvsettings[' + pair + '][' + u_email + ']',value=saved,time=3600)
     getPvSettings(u_email,pair) #call again  
