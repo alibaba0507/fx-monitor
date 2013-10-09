@@ -41,30 +41,37 @@ class MainHandler(webapp2.RequestHandler):
        self.response.out.write('<p> Access denied ... <br/>')
    elif self.request.get('pair'):
      pair = self.request.get('pair')
+     '''
      hist_json = Fx_Utils.getCachedPairData(pair)
      while hist_json is None: # looping till get some data
       cachedJson.loadData()
       hist_json = Fx_Utils.getCachedPairData(pair)
+      '''
+     hist_json = DbHistPatterns.get('pt')
       # get data as json
      resultJSON = json.loads(hist_json) 
-     patternList = Fx_Utils.constPatternList(resultJSON['hist'],None)
+     patternList = Fx_Utils.constPatternList(resultJSON['hist'],pair)
      template_values = Fx_Utils.constTemplateValues(userInfo,patternList,None)
      path = os.path.join(os.path.dirname(__file__), 'index1.html')
      self.response.out.write(template.render(path,template_values))  
    elif self.request.get('pv'):
      if self.request.get('p'):
-      hist_json = memcache.get('pv_' + self.request.get('p'))
+      pair =  self.request.get('p')
+      #hist_json = memcache.get('pv_' + self.request.get('p'))
      else:
-      hist_json = memcache.get('pv')
-      
+       pair = None
+      #hist_json = memcache.get('pv')
+     '''  
      while hist_json is None: # looping till get some data
       cachedJson.loadData()
       hist_json = memcache.get('pv')
      pair = None
+     '''
+     hist_json = DbHistPatterns.get('pv')
      #if self.request.get('p'):
      # pair = self.request.get('p')
      resultJSON = json.loads(hist_json)
-     patternList = Fx_Utils.constPatternList(resultJSON['hist'],None)
+     patternList = Fx_Utils.constPatternList(resultJSON['hist'],pair)
      template_values = Fx_Utils.constTemplateValues(userInfo,patternList,1)
      path = os.path.join(os.path.dirname(__file__), 'index1.html')
      self.response.out.write(template.render(path,template_values))  
