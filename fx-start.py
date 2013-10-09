@@ -72,11 +72,13 @@ class MainHandler(webapp2.RequestHandler):
     # get history table for all pairs patterns
     today = date.today()
     #logging.info('Today is [' + strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()) + ']')
+    '''
     hist_json = memcache.get('hist')
     while hist_json is None: # looping till get some data
      cachedJson.loadData()
      hist_json = memcache.get('hist')
-    #hist_json = DbHistPatterns.get('pt')
+    '''
+    hist_json = DbHistPatterns.get('pt')
     #logging.info(hist_json)
     # get data as json
     resultJSON = json.loads(hist_json) 
@@ -93,16 +95,15 @@ class MainHandler(webapp2.RequestHandler):
     if self.request.get('post_pattern'):
       # we have a pattern here
       # this is JSON string object
-      data = self.request.get('data')
+      #data = self.request.get('data')
       #resultJSON = json.loads(data)
       #logging.info('Data [' + data  + ']')
-      DbHistPatterns.save(data,'pt')
+      DbHistPatterns.save('pt')
     if self.request.get('post_pv'):
       # we have a pattern here
       # this is JSON string object
-      data = self.request.get('data')
       #resultJSON = json.loads(data)
-      DbHistPatterns.save(data,'pv')
+      DbHistPatterns.save('pv')
     if self.request.get('add'):
       pair = self.request.get('add')
       d1 = DbPivots.translatePattern(self.request.get('d1'))

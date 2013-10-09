@@ -11,26 +11,36 @@ class Hist(ndb.Model):
   data = ndb.BlobProperty()
 
 
-def save(data,type):
-  #data = str(urllib.unquote(data).decode("utf-8"))
-  data = str(data)
-  logging.info(' Data length [' + len(data)  +']')
+def save(type):
+  
   #logging.debug('Data ..... [' + data  + ']')
   qry = Hist.query(Hist.type == type)
   if qry.count() > 0:
     p = qry.get()
-    p.data = data
+    #p.data = data
   else:
     #logging.debug('Before add to DB')
-    p = Hist(type = type,data = data)
-    p.put()
+    p = Hist(type = type)#,data = data)
+    #p.put()
     logging.debug('After add to DB')
   
   client = memcache.Client()
   if type == 'pt': #patterns
-    client.set(key='hist_pt',value=data,time=3600)
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?h=1"
+    urlfetch.set_default_fetch_deadline(45)
+    result = urlfetch.fetch(url_link)
+    if result.status_code == 200:
+      client.set(key='hist_pt',value=result.content)
+      p.data = result.content
+      p.put()
   else:
-    client.set(key='pv_hist',value=data,time=3600)
+    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?pv=1"
+    urlfetch.set_default_fetch_deadline(45)
+    result = urlfetch.fetch(url_link)
+    if result.status_code == 200:
+     client.set(key='pv_hist',value=result.content)
+     p.data = result.content
+     p.put()
 
 def get(type):
   client = memcache.Client()
