@@ -1,5 +1,6 @@
 from google.appengine.ext import ndb
 from google.appengine.api import memcache
+from google.appengine.api import urlfetch
 import logging
 import urllib
 
