@@ -93,6 +93,7 @@ class MainHandler(webapp2.RequestHandler):
       # this is JSON string object
       data = self.request.get('data')
       #resultJSON = json.loads(data)
+      logging.info('Data [' + data  + ']')
       DbHistPatterns.save(data,'pt')
     if self.request.get('post_pv'):
       # we have a pattern here
