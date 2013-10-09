@@ -12,14 +12,14 @@ class Hist(ndb.Model):
 
 
 def save(data,type):
-  data = urllib.unquote(data).decode("utf-8")
-  logging.debug('Data ..... [' + data  + ']')
+  data = str(urllib.unquote(data).decode("utf-8"))
+  #logging.debug('Data ..... [' + data  + ']')
   qry = Hist.query(Hist.type == type)
   if qry.count() > 0:
     p = qry.get()
     p.data = data
   else:
-    logging.debug('Before add to DB')
+    #logging.debug('Before add to DB')
     p = Hist(type = type,data = data)
     p.put()
     logging.debug('After add to DB')

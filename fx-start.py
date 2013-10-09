@@ -71,11 +71,12 @@ class MainHandler(webapp2.RequestHandler):
    else:
     # get history table for all pairs patterns
     today = date.today()
-    logging.info('Today is [' + strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()) + ']')
-    hist_json = memcache.get('hist')
-    while hist_json is None: # looping till get some data
-     cachedJson.loadData()
-     hist_json = memcache.get('hist')
+    #logging.info('Today is [' + strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()) + ']')
+    #hist_json = memcache.get('hist')
+    #while hist_json is None: # looping till get some data
+    # cachedJson.loadData()
+    # hist_json = memcache.get('hist')
+    hist_json = DbHistPatterns.get('pt')
     # get data as json
     resultJSON = json.loads(hist_json) 
     patternList = Fx_Utils.constPatternList(resultJSON['hist'],None)
@@ -93,7 +94,7 @@ class MainHandler(webapp2.RequestHandler):
       # this is JSON string object
       data = self.request.get('data')
       #resultJSON = json.loads(data)
-      logging.info('Data [' + data  + ']')
+      #logging.info('Data [' + data  + ']')
       DbHistPatterns.save(data,'pt')
     if self.request.get('post_pv'):
       # we have a pattern here
