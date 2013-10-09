@@ -72,12 +72,12 @@ class MainHandler(webapp2.RequestHandler):
     # get history table for all pairs patterns
     today = date.today()
     #logging.info('Today is [' + strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()) + ']')
-    #hist_json = memcache.get('hist')
-    #while hist_json is None: # looping till get some data
-    # cachedJson.loadData()
-    # hist_json = memcache.get('hist')
-    hist_json = DbHistPatterns.get('pt')
-    logging.info(hist_json)
+    hist_json = memcache.get('hist')
+    while hist_json is None: # looping till get some data
+     cachedJson.loadData()
+     hist_json = memcache.get('hist')
+    #hist_json = DbHistPatterns.get('pt')
+    #logging.info(hist_json)
     # get data as json
     resultJSON = json.loads(hist_json) 
     patternList = Fx_Utils.constPatternList(resultJSON['hist'],None)
