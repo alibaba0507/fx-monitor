@@ -109,22 +109,23 @@ def sendEmailForPatternAlert():
   last_email = ''
   msg = ''
   subject = 'Fx-Monitor Pattern Alert'
-  for p in q_pattern:
-    if last_email != p.pair.email:
-      if msg != '':
-       message = mail.EmailMessage(sender="fx2go4u@gmail.com",subject=subject)
-       message.to = last_email
-       message.body = """
-       Dear Fx-Monitor User,
-       """
-       message.html = msg
-       logging.info(' Email has been send ...')
-       message.send()
-       msg = ''
-      last_email = p.pair.email
-    msg += ' Pair [' + p.pair.name + '] Pattern [<a href="http://fx-monitor.appspot.com/?pair=' + p.pair.name + '">' + p.name + '</a>]<br />'
-    p.sendEmail = 0 # reset email flag
-    p.put()
+  if q_pattern.count()  > 0:
+   for p in q_pattern:
+     if last_email != p.pair.email:
+       if msg != '':
+        message = mail.EmailMessage(sender="fx2go4u@gmail.com",subject=subject)
+        message.to = last_email
+        message.body = """
+        Dear Fx-Monitor User,
+        """
+        message.html = msg
+        logging.info(' Email has been send ...')
+        message.send()
+        msg = ''
+       last_email = p.pair.email
+     msg += ' Pair [' + p.pair.name + '] Pattern [<a href="http://fx-monitor.appspot.com/?pair=' + p.pair.name + '">' + p.name + '</a>]<br />'
+     p.sendEmail = 0 # reset email flag
+     p.put()
         
         
 def updatePatternAlerts(patternName):
