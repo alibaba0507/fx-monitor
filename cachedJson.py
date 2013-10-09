@@ -7,6 +7,7 @@ from datetime import date
 import urllib
 from google.appengine.ext import ndb
 from google.appengine.api import mail
+import DbHistPatterns
 #import Utils
 
 class Pair(ndb.Model):
@@ -141,6 +142,7 @@ def updatePatternAlerts(patternName):
 def chekEmailPatterns():
    #client = memcache.Client()
    # we must ensure we have the latest
+   '''
    url_link = "https://script.google.com/macros/s/AKfycbzFDj3RD57LI-W8ppcyHVhNq_3-_MQ-WUP9sttWZoO8ocvhF-Dh/exec?h=1"
    urlfetch.set_default_fetch_deadline(45)
    result = urlfetch.fetch(url_link)
@@ -153,7 +155,10 @@ def chekEmailPatterns():
    result = hist_json = memcache.get('hist')#client.get(key='hist')#,value=result.content,time=3600)
    if result is None:
      chekEmailPatterns()
+   '''
    today = date.today()
+   
+   result = DbHistPatterns.get('pt')
    resultJSON = json.loads(result)
    cnt = 0
    for elem in resultJSON['hist']:
@@ -172,7 +177,9 @@ def chekEmailPatterns():
       if i == 2: # fromat time
        l = s.split('T')
        logging.debug('Pattern date [' + l[0] + '] current day [' +  today.isoformat() + ']')
-       if len(l) > 0 and (today.isoformat() == l[0]):
+       if today.isoformat() == l[0]: 
+        break
+       if len(l) > 0 and today.isoformat() == l[0]:
         if (today.isoformat() == l[0]): # only today patterns
          logging.info(' We found matching pattern')
          updatePatternAlerts(pattern)

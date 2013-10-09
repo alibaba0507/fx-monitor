@@ -106,6 +106,7 @@ class MainHandler(webapp2.RequestHandler):
       #resultJSON = json.loads(data)
       #logging.info('Data [' + data  + ']')
       DbHistPatterns.save('pt')
+      cachedJson.chekEmailPatterns()
     if self.request.get('post_pv'):
       # we have a pattern here
       # this is JSON string object

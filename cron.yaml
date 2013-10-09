@@ -5,11 +5,11 @@ cron:
 #  target: cron
 #  schedule: every 25 minutes
 
-- description: check for occurance of the patterns for current day
-  url: /?checkPatterns=1
+#- description: check for occurance of the patterns for current day
+#  url: /?checkPatterns=1
   #target: checkPatterns
-  schedule: every day 23:00
-  timezone: Africa/Johannesburg
+#  schedule: every day 23:00
+#  timezone: Africa/Johannesburg
 
 #just comment
 - description: Send alert emails to users if any
