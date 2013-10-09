@@ -1,8 +1,9 @@
 cron:
-- description: load Data into memcache
-  url: /?cron=1
-  target: cron
-  schedule: every 25 minutes
+
+#- description: load Data into memcache
+#  url: /?cron=1
+#  target: cron
+#  schedule: every 25 minutes
 
 - description: check for occurance of the patterns for current day
   url: /?checkPatterns=1
