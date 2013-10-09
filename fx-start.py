@@ -77,6 +77,7 @@ class MainHandler(webapp2.RequestHandler):
     # cachedJson.loadData()
     # hist_json = memcache.get('hist')
     hist_json = DbHistPatterns.get('pt')
+    logging.info(hist_json)
     # get data as json
     resultJSON = json.loads(hist_json) 
     patternList = Fx_Utils.constPatternList(resultJSON['hist'],None)

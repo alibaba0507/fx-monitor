@@ -12,7 +12,8 @@ class Hist(ndb.Model):
 
 
 def save(data,type):
-  data = str(urllib.unquote(data).decode("utf-8"))
+  #data = str(urllib.unquote(data).decode("utf-8"))
+  data = str(data)
   #logging.debug('Data ..... [' + data  + ']')
   qry = Hist.query(Hist.type == type)
   if qry.count() > 0:
@@ -40,7 +41,7 @@ def get(type):
   
   if pt is None or len(pt) == 0:
    qry = Hist.query(Hist.type == type)
-  if qry.count() > 0:
+   if qry.count() > 0:
     p = qry.get()
     pt = p.data
     if type == 'pt': #patterns
