@@ -28,13 +28,13 @@ def savePaternSettings(u_email,pair,pattern,value):
        if q_pattern.count() == 0:
         pt = Pattern(name = pattern,value = 1,pair = p)
         pt.put() # save to db
-       saved = json.dumps([p.to_dict() for p in Pattern.query(Pattern.email == u_email).fetch()])
+       saved = json.dumps([p.to_dict() for p in Pattern.query(Pair.email == u_email).fetch()])
        client.set(key='pairs_pattern[' + u_email + ']',value=saved,time=3600)
      else:
        if q_pattern.count() > 0:
          pt = q_pattern.get()
          pt.key.delete() # remove from db
-       saved = json.dumps([p.to_dict() for p in Pattern.query(Pattern.email == u_email).fetch()])
+       saved = json.dumps([p.to_dict() for p in Pattern.query(Pair.email == u_email).fetch()])
        client.set(key='pairs_pattern[' + u_email + ']',value=saved,time=3600)
    else: # save pair
     p = Pair(name = pair,email = u_email,value = 1)
@@ -67,7 +67,7 @@ def getPaternSettings(u_email,pair,pattern):
    pair = pair.lower()
    ret_pattern = client.get(key='pairs_pattern[' + u_email + ']')
    if ret_pattern is None or len(ret_pattern) == 0:
-    saved = json.dumps([p.to_dict() for p in Pattern.query(Pattern.email == u_email).fetch()])
+    saved = json.dumps([p.to_dict() for p in Pattern.query(Pair.email == u_email).fetch()])
     client.set(key='pairs_pattern[' + u_email + ']',value=saved,time=3600)
     getPaternSettings(u_email,pair,pattern)
    #logging.info(' Get Patterns Settings [' + pair  +'][' + pattern + '][' + str(ret_pattern) + ']')
