@@ -77,9 +77,10 @@ def getPaternSettings(u_email,pair,pattern):
    key = ('Pair.name')
    key_email = ('Pair.email')
    key_pattern = ('name')
-   patterns = filter(f, json.loads(ret_pattern))
    def f(x):
      return x.name == pattern and x.pair.name == pair and x.pair.email == u_email
+   patterns = filter(f, json.loads(ret_pattern))
+   
    #patterns = json.loads(ret_pattern).fromkeys(key_email,u_email).fromkeys(key,pair).fromkeys(key_pattern,pattern)
    if patterns is not None and len(patterns): return patterns
    else:    
