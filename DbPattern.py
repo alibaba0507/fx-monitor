@@ -79,7 +79,7 @@ def getPaternSettings(u_email,pair,pattern):
    key_pattern = ('name')
    
    def f(x):
-     return x['name'] == pattern and x['pair.name'] == pair and x['pair.email'] == u_email
+     return x['name'] == pattern and x['pair']['name'] == pair and x['pair']['email'] == u_email
    ret_patterns = filter(f, json.loads(ret_pattern))
    
    #patterns = json.loads(ret_pattern).fromkeys(key_email,u_email).fromkeys(key,pair).fromkeys(key_pattern,pattern)
