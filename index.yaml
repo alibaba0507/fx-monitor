@@ -1,0 +1,4 @@
+- kind: Pattern
+  properties:
+  - name: sendEmail
+  - name: pair.email
