@@ -31,9 +31,10 @@ def getPvSettings(u_email,pair):
   #logging.info(' Get Pivot Patterns Settings [' + pair  +'][' + str(ret_pattern) + ']')
   if ret_pattern is not None and len(ret_pattern) > 0: 
     logging.info('Read MEMCASHE ......')
-    key = ('pair')
-    patterns = json.loads(ret_pattern).fromkeys(key,pair)
-    return patterns
+    def f(x):
+     return x['pair'] == pair and x['email'] == u_email
+    ret_patterns = filter(f, json.loads(ret_pattern))
+    return ret_pattern
     
   else:
    #store as json string
