@@ -28,26 +28,18 @@ def savePaternSettings(u_email,pair,pattern,value):
        if q_pattern.count() == 0:
         pt = Pattern(name = pattern,value = 1,pair = p)
         pt.put() # save to db
-       client.set(key='pairs[' + pair + '][' + u_email + '][' + pattern + ']',value=1,time=3600)
+       saved = json.dumps([p.to_dict() for p in Pattern.query(Pattern.email == u_email).fetch()])
+       client.set(key='pairs_pattern[' + u_email + ']',value=saved,time=3600)
      else:
        if q_pattern.count() > 0:
          pt = q_pattern.get()
          pt.key.delete() # remove from db
-       client.delete(key='pairs[' + pair + '][' + u_email + '][' + pattern + ']')
+       saved = json.dumps([p.to_dict() for p in Pattern.query(Pattern.email == u_email).fetch()])
+       client.set(key='pairs_pattern[' + u_email + ']',value=saved,time=3600)
    else: # save pair
     p = Pair(name = pair,email = u_email,value = 1)
     p.put()
-    q_pattern = Pattern.query(Pattern.name == pattern,Pattern.pair == p)
-    if value > 0:
-      if q_pattern.count() == 0:
-       pt = Pattern(name = pattern,value = 1,pair = p)
-       pt.put() # save to db
-       client.set(key='pairs[' + pair + '][' + u_email + '][' + pattern + ']',value=1,time=3600)
-      else:
-       if q_pattern.count() > 0:
-         pt = q_pattern.get()
-         pt.key.delete() # remove from db
-       client.delete(key='pairs[' + pair + '][' + u_email + '][' + pattern + ']')
+    savePaternSettings(u_email,pair,pattern,value)
 
 
 # create list of all users settings linked to selected pair
@@ -73,10 +65,20 @@ def getUserPatternSettings(u_email,pair):
 def getPaternSettings(u_email,pair,pattern):
    client = memcache.Client()
    pair = pair.lower()
-   ret_pattern = client.get(key='pairs[' + pair + '][' + u_email + '][' + pattern + ']')
+   ret_pattern = client.get(key='pairs_pattern[' + u_email + ']')
+   if ret_pattern is None or len(ret_pattern) == 0:
+    saved = json.dumps([p.to_dict() for p in Pattern.query(Pattern.email == u_email).fetch()])
+    client.set(key='pairs_pattern[' + u_email + ']',value=saved,time=3600)
+    getPaternSettings(u_email,pair,pattern)
    #logging.info(' Get Patterns Settings [' + pair  +'][' + pattern + '][' + str(ret_pattern) + ']')
-   if ret_pattern: return ret_pattern
-   else:
+   key = ('Pair.name')
+   key_email = ('Pair.email')
+   key_pattern = ('name')
+   patterns = json.loads(ret_pattern).fromkeys(key_email,u_email).fromkeys(key,pair).fromkeys(key_pattern,pattern)
+   if patterns is not None and len(patterns): return patterns['value']
+   else:    
+     return 0
+     '''
      qry = Pair.query(Pair.name == pair,Pair.email == u_email)
      if qry.count() > 0:
       p = qry.get()
@@ -89,5 +91,6 @@ def getPaternSettings(u_email,pair,pattern):
        return 0
      else: 
       client.set(key='pairs[' + pair + '][' + u_email + '][' + pattern + ']',value=0,time=3600)
-      return 0  
+      return 0
+      '''
        

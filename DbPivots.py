@@ -26,17 +26,21 @@ def translatePattern(shortName):
 def getPvSettings(u_email,pair):
   client = memcache.Client()
   pair = pair.lower()
-  ret_pattern = client.get(key='pvsettings[' + pair + '][' + u_email + ']')
+  #ret_pattern = client.get(key='pvsettings[' + pair + '][' + u_email + ']')
+  ret_pattern = client.get(key='pvsettings[' + u_email + ']')
   #logging.info(' Get Pivot Patterns Settings [' + pair  +'][' + str(ret_pattern) + ']')
   if ret_pattern is not None and len(ret_pattern) > 0: 
     logging.info('Read MEMCASHE ......')
-    return json.loads(ret_pattern)
+    key = ('pair')
+    patterns = json.loads(ret_pattern).fromkeys(key,pair)
+    return patterns
+    
   else:
    #store as json string
-   saved = json.dumps([p.to_dict() for p in Pivots.query(Pivots.pair == pair,Pivots.email == u_email).fetch()])
+   saved = json.dumps([p.to_dict() for p in Pivots.query(Pivots.email == u_email).fetch()])
    logging.info('Read DBase ......')
    if saved and len(saved) > 2:
-    client.set(key='pvsettings[' + pair + '][' + u_email + ']',value=saved,time=3600)
+    client.set(key='pvsettings[' + u_email + ']',value=saved,time=3600)
     getPvSettings(u_email,pair) #call again  
      
 def savePvPattern(u_email,pair,pattern,child_1,child_2,delete):
@@ -49,11 +53,11 @@ def savePvPattern(u_email,pair,pattern,child_1,child_2,delete):
    if delete:
     p.key.delete() # remove from db
     #clear cache
-    client.delete(key='pvsettings[' + pair + '][' + u_email + ']')
+    client.delete(key='pvsettings[' + u_email + ']')
     return 0
  #if child_1 is None:
  p.child_1 = child_1
  p.child_2 = child_2
  p.put()
  #clear cache
- client.delete(key='pvsettings[' + pair + '][' + u_email + ']') 
+ client.delete(key='pvsettings[' + u_email + ']') 
