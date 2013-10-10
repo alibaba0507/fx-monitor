@@ -69,23 +69,21 @@ def getPaternSettings(u_email,pair,pattern):
    pair = pair.lower()
    ret_pattern = client.get(key='pairs_pattern[' + u_email + ']')
    if ret_pattern is None or len(ret_pattern) == 0:
-    res = Pattern.query(Pattern.pair.email == u_email).fetch()
-    for r in res:
-      logging.info('Pattern is [' + r.name + ']')
     saved = json.dumps([p.to_dict() for p in Pattern.query(Pattern.pair.email == u_email).fetch()])
-    logging.info('Saved pair [' + saved  + ']')
+    #logging.info('Saved pair [' + saved  + ']')
     client.set(key='pairs_pattern[' + u_email + ']',value=saved,time=3600)
     getPaternSettings(u_email,pair,pattern)
    #logging.info(' Get Patterns Settings [' + pair  +'][' + pattern + '][' + str(ret_pattern) + ']')
    key = ('Pair.name')
    key_email = ('Pair.email')
    key_pattern = ('name')
+   
    def f(x):
-     return x.name == pattern and x.pair.name == pair and x.pair.email == u_email
-   patterns = filter(f, json.loads(ret_pattern))
+     return x['name'] == pattern and x['pair.name'] == pair and x['pair.email'] == u_email
+   ret_patterns = filter(f, json.loads(ret_pattern))
    
    #patterns = json.loads(ret_pattern).fromkeys(key_email,u_email).fromkeys(key,pair).fromkeys(key_pattern,pattern)
-   if patterns is not None and len(patterns): return patterns
+   if ret_patterns is not None and len(ret_patterns): return ret_patterns
    else:    
      return 0
      '''
