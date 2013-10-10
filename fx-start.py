@@ -21,7 +21,7 @@ class MainHandler(webapp2.RequestHandler):
   def get(self):
    userInfo = Fx_Utils.getLoginInfo(self.request.uri)
    # make sure data is cached
-   cachedJson.loadData()
+   #cachedJson.loadData()
    if self.request.get('clear'):
      cachedJson.clearData()
    #invoke by cron job
