@@ -34,7 +34,7 @@ class MainHandler(webapp2.RequestHandler):
    elif self.request.get('pv_settings'):
      if userInfo:
       template_values = Fx_Utils.constTempPvValues(userInfo)
-      logging.info(template_values)
+      logging.info('Pivot Temp valuues are ' + json.dump(template_values))
       path = os.path.join(os.path.dirname(__file__), 'index_pv.html')
       self.response.out.write(template.render(path,template_values))  
      else:
