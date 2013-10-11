@@ -33,13 +33,14 @@ def getPvSettings(u_email,pair):
     logging.info('Read MEMCASHE ......')
     def f(x):
      return x['pair'] == pair and x['email'] == u_email
-    ret_patterns = filter(f, json.loads(ret_pattern))
-    return ret_pattern
+    result = filter(f, json.loads(ret_pattern))
+    logging.info('Pivots filter [' + json.dumpp(result) + ']')
+    return result
     
   else:
    #store as json string
    saved = json.dumps([p.to_dict() for p in Pivots.query(Pivots.email == u_email).fetch()])
-   logging.info('Read DBase ......')
+   logging.info('Read Pivots DBase ......[' + saved + ']')
    if saved and len(saved) > 2:
     client.set(key='pvsettings[' + u_email + ']',value=saved,time=3600)
     getPvSettings(u_email,pair) #call again  

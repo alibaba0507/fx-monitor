@@ -73,7 +73,7 @@ def getPaternSettings(u_email,pair,pattern):
     #logging.info('Saved pair [' + saved  + ']')
     client.set(key='pairs_pattern[' + u_email + ']',value=saved,time=3600)
     getPaternSettings(u_email,pair,pattern)
-   logging.info(' Patterns are [' + ret_pattern  + ']')
+    logging.info(' Patterns are [' + ret_pattern  + ']')
   
    def f(x):
      return x['name'] == pattern and x['pair']['name'] == pair and x['pair']['email'] == u_email
