@@ -34,7 +34,7 @@ def getPvSettings(u_email,pair):
     def f(x):
      return x['pair'] == pair and x['email'] == u_email
     result = filter(f, json.loads(ret_pattern))
-    logging.info('Pivots filter [' + json.dumpp(result) + ']')
+    logging.info('Pivots filter [' + json.dump(result) + ']')
     return result
     
   else:
