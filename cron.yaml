@@ -10,15 +10,15 @@ cron:
   #target: checkPatterns
 #  schedule: every day 23:00
 #  timezone: Africa/Johannesburg
-- description: load Data into 
+- description: Test App scaling
   url: /
   target: cron
-  schedule: every 25 minutes
+  schedule: every 1 minutes
 
 
 #just comment
 - description: Send alert emails to users if any
   url: /?sendEmailForPatternAlert=1
   #target: sendEmailForPatternAlert
-  schedule: every 2 hours
+  schedule: every 1 minute
   timezone: Africa/Johannesburg
