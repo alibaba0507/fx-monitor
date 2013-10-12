@@ -10,6 +10,11 @@ cron:
   #target: checkPatterns
 #  schedule: every day 23:00
 #  timezone: Africa/Johannesburg
+- description: load Data into 
+  url: /
+  target: cron
+  schedule: every 25 minutes
+
 
 #just comment
 - description: Send alert emails to users if any
