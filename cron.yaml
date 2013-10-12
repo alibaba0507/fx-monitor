@@ -20,5 +20,5 @@ cron:
 - description: Send alert emails to users if any
   url: /?sendEmailForPatternAlert=1
   #target: sendEmailForPatternAlert
-  schedule: every 1 minute
+  schedule: every 1 minutes
   timezone: Africa/Johannesburg
