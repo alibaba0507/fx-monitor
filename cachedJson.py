@@ -129,13 +129,20 @@ def sendEmailForPatternAlert():
         
         
 def updatePatternAlerts(patternName):
-   pattern = convPatternNameToDbName(patternName)
+   pattern = convPatternNameToDbName(patternName,pair)
+   pair = pair.lower()
    # select all pattern records with this name
    logging.info('Convert from [' +patternName + '] to [' + pattern + ']' )
-   q_pattern = Pattern.query(Pattern.name == pattern)
+   q_pattern = Pattern.query(Pattern.name == pattern,Pattern.pair.name == pair).fetch()
+   l = [] # list of entities
    for p in q_pattern:
      p.sendEmail = 1
-     p.put()
+     l.append(p)
+     #p.put()
+   if len(l) > 0:
+     logging.info('updatePatternAlerts save sendEmail to NDB ...')
+     ndb.put_multi(l) # add at onece to DB to reduce calls
+    
 
 # this must run as a cron job onece a day
 # check the date of the candlestick pattern
@@ -183,7 +190,7 @@ def chekEmailPatterns():
        if len(l) > 0 and today.isoformat() == l[0]:
         if (today.isoformat() == l[0]): # only today patterns
          logging.info(' We found matching pattern')
-         updatePatternAlerts(pattern)
+         updatePatternAlerts(pattern,pair)
       i += 1
       
       
