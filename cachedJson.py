@@ -173,20 +173,20 @@ def chekEmailPatterns():
     cnt += 1
     #self.response.write("<tr>")
     i = 0
-    logging.info(' Start check Email patterns .... ')
+    #logging.info(' Start check Email patterns .... ')
     pair = ''
     pattern = ''
     for e in elem:
       s = urllib.unquote(e).decode("utf-8")
       if i == 0:
-        pair = s
+        pair = s.strip()
       if i == 1:
         pattern = s
       if i == 2: # fromat time
        l = s.split('T')
-       logging.debug('Pattern date [' + l[0] + '] current day [' +  today.isoformat() + ']')
        if today.isoformat() != l[0]: 
         break
+       logging.debug('Pattern date [' + l[0] + '] current day [' +  today.isoformat() + ']')
        if len(l) > 0 and today.isoformat() == l[0]:
         if (today.isoformat() == l[0]): # only today patterns
          logging.info(' We found matching pattern')
