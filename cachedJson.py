@@ -128,7 +128,7 @@ def sendEmailForPatternAlert():
      p.put()
         
         
-def updatePatternAlerts(patternName):
+def updatePatternAlerts(patternName,pair):
    pattern = convPatternNameToDbName(patternName,pair)
    pair = pair.lower()
    # select all pattern records with this name
