@@ -26,9 +26,17 @@ def search(q,pair):
     resJSON = json.loads(result.content)
     items = resJSON.value.items
     
+    
     for i in items:
       link = i.link
       title = i.title
+      url_link = 'http://dotfornote.appspot.com/?url=' + link + '&wrds=1'
+      urlfetch.set_default_fetch_deadline(45)
+      result = urlfetch.fetch(url)
+      if result.status_code == 200:
+       resItems = json.loads(result.content)
+       pos += int(resItems['positive'])
+       neg += int(resItems['negative'])
     
     
     
