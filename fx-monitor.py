@@ -25,10 +25,13 @@ class MainHandler(webapp2.RequestHandler):
   
   def get(self):
     userInfo = getLoginInfo(self.request.uri)
-    if slef.request.get('news'):
+    if self.request.get('news'):
+      logging.info('News search ...')
       resp = News.search(slef.request.get('q'),slef.request.get('p'))
+      logging.info('after News search ...[' + resp + ']')
       self.response.out.write(resp)
-    if self.request.get('clear'):
+      #return
+    elif self.request.get('clear'):
       cachedJson.clearData()
     elif self.request.get('email'):
       email = self.request.get('email')
