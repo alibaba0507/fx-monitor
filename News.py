@@ -26,7 +26,7 @@ def search(q,pair):
     resJSON = json.loads(result.content)
     items = resJSON.value.items
     
-    
+    cnt = 0
     for i in items:
       link = i.link
       title = i.title
@@ -37,7 +37,8 @@ def search(q,pair):
        resItems = json.loads(result.content)
        pos += int(resItems['positive'])
        neg += int(resItems['negative'])
-    
+       cnt += 1
+    return '<p> pos = [' + str((pos/cnt)) + '] Neg [' + str((neg/cnt)) + ']<br />'
     
     
     
