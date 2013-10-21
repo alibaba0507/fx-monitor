@@ -13,6 +13,7 @@ import logging
 from google.appengine.api import mail
 #from Utils import LoginInfo
 from google.appengine.api import users
+import News
 
 '''
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -24,6 +25,9 @@ class MainHandler(webapp2.RequestHandler):
   
   def get(self):
     userInfo = getLoginInfo(self.request.uri)
+    if slef.request.get('news'):
+      resp = News.search(slef.request.get('q'),slef.request.get('p'))
+      self.response.out.write(resp)
     if self.request.get('clear'):
       cachedJson.clearData()
     elif self.request.get('email'):

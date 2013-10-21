@@ -39,6 +39,7 @@ def search(q,pair):
        neg += int(resItems['negative'])
        cnt += 1
     return '<p> pos = [' + str((pos/cnt)) + '] Neg [' + str((neg/cnt)) + ']<br />'
-    
+  else:
+    return '<p> No Resilt for this request <br/>'
     
     
