@@ -25,6 +25,7 @@ class MainHandler(webapp2.RequestHandler):
   
   def get(self):
     userInfo = getLoginInfo(self.request.uri)
+    logging.info('Request params ' + self.request)
     if self.request.get('news'):
       logging.info('News search ...')
       resp = News.search(slef.request.get('q'),slef.request.get('p'))
@@ -32,7 +33,8 @@ class MainHandler(webapp2.RequestHandler):
       self.response.out.write(resp)
       #return
     elif self.request.get('clear'):
-      cachedJson.clearData()
+      logging.info('Clear search ...')
+      #cachedJson.clearData()
     elif self.request.get('email'):
       email = self.request.get('email')
       msg = '<p>Test for Html message <br/><ul> Some list <li> List 1</li><li>List 2</li></ul>'
@@ -68,6 +70,7 @@ class MainHandler(webapp2.RequestHandler):
     elif self.request.get('pair'):
       #cachedJson.clearData()
       pair = self.request.get('pair')
+      logging.info('Pair request ...')
       cachedJson.loadData()
       if pair == 'gbpusd':
         hist_json = memcache.get('h_gbp')
@@ -245,7 +248,7 @@ class MainHandler(webapp2.RequestHandler):
             'EURJPY' : cachedJson.getUserPatternSettings(user.email(),'EURJPY'),
             'USDJPY' : cachedJson.getUserPatternSettings(user.email(),'USDJPY')
          }  
-      else:
+      els
         user = users.get_current_user()
         if user is None:
          template_values = {
@@ -352,6 +355,7 @@ class MainHandler(webapp2.RequestHandler):
       path = os.path.join(os.path.dirname(__file__), 'index1.html')
       self.response.out.write(template.render(path,template_values))
     else:
+      loginfo.info(' No parameters ....')
       cachedJson.loadData()
       #cachedJson.checkSRLevels()
       hist_json = memcache.get('hist')
