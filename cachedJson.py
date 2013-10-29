@@ -129,7 +129,7 @@ def sendEmailForPatternAlert():
         
         
 def updatePatternAlerts(patternName,pair):
-   pattern = convPatternNameToDbName(patternName,pair)
+   pattern = convPatternNameToDbName(patternName)
    pair = pair.lower()
    # select all pattern records with this name
    logging.info('Convert from [' +patternName + '] to [' + pattern + ']' )
